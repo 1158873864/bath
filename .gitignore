@@ -1,1 +1,4 @@
 **/.idea
+
+# wechat web node_modules
+/wx_web/node_modules/*
