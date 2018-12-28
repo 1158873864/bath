@@ -408,6 +408,6 @@ gallery.html css
     overflow: auto;
 }
 .am-list .active{color: #0e90d2;}
-@media screen (max-width: 775px) and (min-width: 400px) {
+@media screen and (max-width: 775px) and (min-width: 400px) {
 	.leftnav{display: none !important;}
 }
