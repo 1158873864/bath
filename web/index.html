@@ -1,0 +1,327 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> 钧融圈</title>
+
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <style>
+        @media only screen and (max-width: 640px) {
+            #closeBtn {
+                display: none;
+            }
+
+            #admin-offcanvas {
+                left: 0;
+                width: 58%;
+                z-index: 100000
+            }
+        }
+    </style>
+    <script src="assets/js/getUrl.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <img src="assets/images/11.jpg" class=" radius-circle rotate-hover" height="40" alt="" style="margin-top: -2%;"/>
+        <small> 钧融圈后台管理中心</small>
+        <button class="am-topbar-btn am-btn am-btn-sm am-btn-primary" id='closeBtn'><span class="am-icon-bars"></span>
+        </button>
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+            class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <li class="am-dropdown" data-am-dropdown>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                    <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="me.html"><span class="am-icon-user"></span> 我的信息</a></li>
+
+                    <li><a href="login.html" onclick="getout()"><span class="am-icon-power-off"></span> 退出</a></li>
+                </ul>
+            </li>
+            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span
+                    class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar   leftnav" id="admin-offcanvas">
+        <div class="">
+
+            <ul class="am-list admin-sidebar-list">
+                <li><a href="index.html"><span class="am-icon-home"></span> 首页</a></li>
+                
+                <li id="c1" class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-13'}"><span class="am-icon-file"></span>
+                        权限管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-13">
+                        <!--<li><a href="admin.html" target="right" class="am-cf"><span class="am-icon-signing"></span> 权限管理</a>
+                        </li>-->
+                        
+                        <li><a href="admin-list.html" target="right" class="am-cf"><span class="am-icon-signing"></span> 管理员列表</a>
+                        </li>
+                        <li><a href="admin-add.html" target="right" class="am-cf"><span class="am-icon-signing"></span> 添加管理员</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li id="c2" class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-14'}"><span class="am-icon-file"></span>
+                        人员管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-14">
+                        <li><a href="vip-list.html" target="right" class="am-cf"><span class="am-icon-signing"></span>人员列表</a>
+                        </li>
+                        <li><a href="vip-add.html" target="right" class="am-cf"><span class="am-icon-signing"></span>
+                            增加人员</a></li>
+                    </ul>
+                </li>
+                <li id="c3" class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-9'}"><span class="am-icon-file"></span>
+                        内容管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-9">
+                        <li><a href="course.html" class="am-cf" target="right"><span class="am-icon-signing"></span>课程列表</a></li>
+                        <li><a href="file.html" class="am-cf" target="right"><span class="am-icon-signing"></span>文档列表</a></li>
+                        <li><a href="project.html" class="am-cf" target="right"><span class="am-icon-signing"></span>项目列表</a></li>
+                    </ul>
+
+
+                </li>
+                <li id="c8" class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-11'}"><span class="am-icon-file"></span>
+                        资讯管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-11">
+                        <li><a href="news.html" class="am-cf" target="right"><span class="am-icon-signing"></span>资讯列表</a></li>
+                    </ul>
+
+
+                </li>
+                <li id="c4" class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-8'}"><span class="am-icon-file"></span>
+                        支付订单管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-8">
+                        <li><a href="order.html" class="am-cf" target="right"><span class="am-icon-signing"></span>支付记录</a></li>
+                    </ul>
+                </li>
+                <li id="c5" class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-55'}"><span class="am-icon-file"></span>
+                        会员管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-55">
+                        <li><a href="level.html" class="am-cf" target="right"><span class="am-icon-signing"></span>
+                            会员信息设置</a>
+                        </li>
+                        <li><a href="enterprise.html" class="am-cf" target="right"><span class="am-icon-signing"></span>
+                            企业用户价格设置</a>
+                        </li>
+
+                        <li><a href="enterpriseList.html" class="am-cf" target="right"><span class="am-icon-signing"></span>
+                            企业列表</a>
+                        </li>
+
+                        <li><a href="feed.html" class="am-cf" target="right"><span class="am-icon-signing"></span>
+                            圈子列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="c6" class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-6'}"><span
+                            class="am-icon-headphones"></span> 广告管理<span
+                            class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-6">
+                        <li><a href="ads.html" class="am-cf" target="right"><span class="am-icon-signing"></span> 广告位列表</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li id="c7" class="admin-parent">
+                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav-7'}"><span
+                            class="am-icon-headphones"></span> 用户标签管理<span
+                            class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                    <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav-7">
+                        <li><a href="classification.html" class="am-cf" target="right"><span class="am-icon-signing"></span> 标签列表</a>
+                        </li>
+                        <li><a href="bigClass.html" class="am-cf" target="right"><span class="am-icon-signing"></span> 业务三大类</a>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <div>.</div>
+                <div>.</div>
+
+
+            </ul>
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+<!-- sidebar end -->
+<!-- content start -->
+<div class="admin-content rightnav">
+    <iframe scrolling="auto" rameborder="0" src="old-index.html" name="right" width="100%" height="100%"></iframe>
+</div>
+<!-- content end -->
+
+</div>
+
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" id='phoneTbtn'></a>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js_lib/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js_lib/jquery.min.js"></script>
+<script src="assets/js/pintuer.js"></script>
+<!--<![endif]-->
+<script src="assets/js_lib/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".am-list .am-cf").click(function () {
+            $(this).next().slideToggle(200);
+            $(".am-list .am-cf").removeClass("active")
+            $(this).toggleClass("active");
+
+        })
+        $(".am-list ul li a").click(function () {
+            $(".am-list ul li a").removeClass("active");
+            $(".am-list .am-cf").removeClass("active")
+            $(this).addClass("active");
+        })
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".am-icon-btn").click(function () {
+            $(".am-offcanvas").toggle();
+            $(".modal").toggle();
+        })
+    })
+</script>
+
+<script>
+    /*  $(function() {
+     var id = '#my-offcanvas';
+     var $myOc = $(id);
+     $('.doc-oc-js').on('click', function() {
+     $myOc.offCanvas($(this).data('rel'));
+     });
+
+     $myOc.on('open.offcanvas.amui', function() {
+     console.log(id + ' 打开了。');
+     }).on('close.offcanvas.amui', function() {
+     console.log(id + ' 关闭了。');
+     });
+     });*/
+
+
+    $('#closeBtn').click(function () {
+        $('#admin-offcanvas').toggle();
+        if ($('#admin-offcanvas').css('display') == 'none') {
+            $('.admin-content.rightnav').css({left: '0', width: '100%'});
+        } else {
+            $('.admin-content.rightnav').css({left: '20%', width: '80%'});
+        }
+    })
+    $('#phoneTbtn').click(function () {
+        $('#admin-offcanvas').toggle();
+
+        if ($('#admin-offcanvas').css('display') == 'none') {
+            $('.admin-content.rightnav').css({left: '0', width: '100%'});
+        } else {
+            $('.admin-content.rightnav').css({left: '20%', width: '80%'});
+        }
+
+    });
+    if ($(document).width() <= 600) {
+        $('#admin-offcanvas').on('click', 'li>a', function () {
+            console.log();
+            if ($(this).attr('href')) {
+                $(this).parents('#admin-offcanvas').hide();
+            }
+        })
+    }
+
+    var storage = window.localStorage;
+    var user=storage["adminUsername"];
+    var url=getUrl();
+    $.ajax(
+        {
+            url: url+"/getAdminList",
+            data: {
+            },
+            async:false,
+            success: function (data) {
+                for(var i=0;i<data.admins.length;i++){
+                    if(user==data.admins[i].username){
+                        var limits=data.admins[i].limits.split("...");
+                        $("#c1").hide();
+                        $("#c2").hide();
+                        $("#c3").hide();
+                        $("#c4").hide();
+                        $("#c5").hide();
+                        $("#c6").hide();
+                        $("#c7").hide();
+                        $("#c8").hide();
+                        for(var i=1;i<=8;i++){
+                            for(var j=0;j<limits.length;j++){
+                                if(parseInt(limits[j])==i){
+                                    $("#c"+i).show();
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+
+            },
+            error: function (xhr) {
+                //alert('动态页有问题噶！\n\n' + xhr.responseText);
+            },
+            traditional: true,
+        }
+    )
+
+    function getout(){
+        var storage = window.localStorage;
+        storage["has"]="no";
+    }
+</script>
+<script>
+    var storage = window.localStorage;
+    if(storage["has"]!="yes"){
+        window.location.href="login.html";
+    }
+</script>
+</body>
+</html>
