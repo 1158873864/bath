@@ -1,0 +1,52 @@
+server:
+  port: 3389
+#  ssl:
+#    key-store: config/jrq.jks
+#    key-store-password: njujrq123
+#    key-store-type: JKS
+logging:
+  level:
+    org.springframework:
+      data: DEBUG
+      security: DEBUG
+jwt:
+  claimKey:
+    username: "username"
+    authorities: "authorities"
+  secret: "wfhg9hr-1jfpjf-p3j-=vgf0pvmo3k=2-3rj0-3j=gn[=3-g[mj"
+  header: Authorization
+  tokenHead: "Bearer "
+oos:
+  accessKey: "c4582dec5d0809103126"
+  secretKey: "47c783687d4c452c5d71b817b8c481915fb0094a"
+  endPoint: "http://oos-bj2.ctyunapi.cn"
+  bucketName: "njutakeout"
+spring:
+  jpa:
+    database: mysql
+    properties:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bath?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+  aop:
+    auto: true
+    proxy-target-class: false
+wechat:
+  url: https://api.weixin.qq.com/sns/jscode2session?appid=
+  order_url: https://api.mch.weixin.qq.com/pay/unifiedorder
+  id: wx917cbd6132554ae2
+  secret: 55e365dcaf3d51b4159bf0e1017a4978
+  mch_id: 1515757801
+  body: 钧融圈
+  device_info: WEB
+  notify_url: https://junrongcenter.com:3389/getWxPayResult
+  trade_type: JSAPI
+  api_key: junrongcenterxiaochengxu556677mm
+  sign_type: MD5

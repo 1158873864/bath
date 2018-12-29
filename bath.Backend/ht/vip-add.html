@@ -1,0 +1,210 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Amaze UI Admin index Examples</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <script src="assets/js/getUrl.js"></script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+
+  <!-- sidebar end -->
+
+<!-- content start -->
+<div class="admin-content">
+  <div class="admin-content-body">
+    <div class="am-cf am-padding am-padding-bottom-0">
+      <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">人员管理</strong> /
+  
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="am-tabs am-margin" data-am-tabs>
+      <ul class="am-tabs-nav am-nav am-nav-tabs">
+        <li class="am-active"><a href="#tab1">添加人员</a></li>
+     
+      </ul>
+
+      <div class="am-tabs-bd">
+
+        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">微信openid</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="openid" name="openid" type="text" value="">
+            </div>
+          </div>
+
+        	 <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">用户名</div>
+            <div class="am-u-sm-8 am-u-md-10">
+            	<input id="username" name="username" type="text" value="">
+            </div>
+          </div>
+          <form id="upload-file-form">
+            <div class="am-g am-margin-top">
+              <div class="am-u-sm-4 am-u-md-2 am-text-right">头像</div>
+              <div class="am-u-sm-8 am-u-md-10">
+                <input type="file" name="face" id="face"><br>
+                <p>（最佳头像尺寸：80*80px）</p>
+              </div>
+
+            </div>
+          </form>
+
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">电话号码</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="phone" name="phone" type="text" value="">
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">电子邮箱</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="email" name="email" type="text" value="">
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">公司名称</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="company" name="company" type="text" value="">
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">部门</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="department" name="department" type="text" value="">
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">职位</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="position" name="position" type="text" value="">
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">个人简介</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="intro" name="intro" type="text" value="">
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">城市</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="city" name="city" type="text" value="">
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">账户余额</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <input id="credit" name="credit" type="text" value="">
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">用户标签</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <select id="label">
+
+              </select>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">用户等级</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <select id="levelName">
+
+              </select>
+            </div>
+          </div>
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">启用/冻结</div>
+            <div class="am-u-sm-8 am-u-md-10">
+            	<select id="is">
+            		<option>启用</option>
+            		<option>冻结</option>
+            	</select>
+            </div>
+          </div>
+
+
+
+
+
+      </div>
+    </div>
+      <div class="am-margin">
+          <button id="addbutton" onclick="adduser()" type="button" class="am-btn am-btn-primary am-btn-xs"style="background-color: #22cc77; margin-left: 20%;margin-bottom: 20%;">确定</button>
+      </div>
+
+  </div>
+
+  <footer class="admin-content-footer">
+
+    <p class="am-padding-left"></p>
+  </footer>
+</div>
+<!-- content end -->
+
+</div>
+
+
+
+<footer>
+  <hr>
+  <p class="am-padding-left"></p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/vip-add.js"></script>
+<script type="text/javascript">
+
+
+
+
+</script>
+<script>
+    var storage = window.localStorage;
+    if(storage["has"]!="yes"){
+        window.location.href="login.html";
+    }
+</script>
+</body>
+</html>

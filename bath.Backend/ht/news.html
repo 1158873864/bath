@@ -1,0 +1,334 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>资讯列表</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+
+<!-- sidebar end -->
+
+<!-- content start -->
+<div class="admin-content">
+    <div class="admin-content-body">
+        <div class="am-cf am-padding am-padding-bottom-0">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">资讯列表</strong> / <small></small></div>
+        </div>
+
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-6">
+                <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                        <button type="button" id="checkall"class="am-btn am-btn-default"><span class="icon-check"></span> 全选</button>
+                        <button type="button" class="am-btn am-btn-default" onclick="delAll()"><span class="am-icon-trash-o"></span> 删除</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <input id="con" type="text" class="am-form-field">
+                    <span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="button" onclick="search()">id搜索</button>
+          </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+
+                        </thead><tr>
+                        <th><input type="checkbox" name="id[]"/></th>
+                        <th>资讯ID</th>
+                        <th>来源</th>
+                        <th>发布时间</th>
+                        <th class="table-set">操作</th>
+                    </tr>
+                        <tr id="your-alert-1">
+                            <td><input id="c1" type="checkbox" name="id[]"/></td>
+                            <td id="number1"></td>
+                            <td id="name1"></td>
+                            <td id="date1"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(0)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close1" onclick="deletequestion(0)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="your-alert-2">
+                            <td><input id="c2" type="checkbox" name="id[]"/></td>
+                            <td id="number2"></td>
+                            <td id="name2"></td>
+                            <td id="date2"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(1)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close2" onclick="deletequestion(1)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="your-alert-3">
+                            <td><input id="c3" type="checkbox" name="id[]"/></td>
+                            <td id="number3"></td>
+                            <td id="name3"></td>
+                            <td id="date3"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(2)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close3" onclick="deletequestion(2)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="your-alert-4">
+                            <td><input id="c4" type="checkbox" name="id[]"/></td>
+                            <td id="number4"></td>
+                            <td id="name4"></td>
+                            <td id="date4"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(3)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close4" onclick="deletequestion(3)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="your-alert-5">
+                            <td><input id="c5" type="checkbox" name="id[]"/></td>
+                            <td id="number5"></td>
+                            <td id="name5"></td>
+                            <td id="date5"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(4)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close5" onclick="deletequestion(4)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="your-alert-6">
+                            <td><input id="c6" type="checkbox" name="id[]"/></td>
+                            <td id="number6"></td>
+                            <td id="name6"></td>
+                            <td id="date6"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(5)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close6" onclick="deletequestion(5)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="your-alert-7">
+                            <td><input id="c7" type="checkbox" name="id[]"/></td>
+                            <td id="number7"></td>
+                            <td id="name7"></td>
+                            <td id="date7"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(6)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close7" onclick="deletequestion(6)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="your-alert-8">
+                            <td><input id="c8" type="checkbox" name="id[]"/></td>
+                            <td id="number8"></td>
+                            <td id="name8"></td>
+                            <td id="date8"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(7)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close8" onclick="deletequestion(7)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="your-alert-9">
+                            <td><input id="c9" type="checkbox" name="id[]"/></td>
+                            <td id="number9"></td>
+                            <td id="name9"></td>
+                            <td id="date9"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(8)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close9" onclick="deletequestion(8)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="your-alert-10">
+                            <td><input id="c10" type="checkbox" name="id[]"/></td>
+                            <td id="number10"></td>
+                            <td id="name10"></td>
+                            <td id="date10"></td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+
+                                        <a href="news-change.html" onclick="setthisquestion(9)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close10" onclick="deletequestion(9)"><span class="am-icon-trash-o"></span>删除</button>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <div  class="am-cf">
+                        <div id="jilu">共 3 条记录</div>
+                        <div class="am-fr">
+                            <ul class="am-pagination">
+                                <li><a id="pageminus" href="#" onclick="changegroup(1)">«</a></li>
+                                <li><a id="page1" href="#" onclick="changepage(1)">1</a></li>
+                                <li><a id="page2" href="#" onclick="changepage(2)">2</a></li>
+                                <li><a id="page3" href="#" onclick="changepage(3)">3</a></li>
+                                <li><a id="page4" href="#" onclick="changepage(4)">4</a></li>
+                                <li><a id="page5" href="#" onclick="changepage(5)">5</a></li>
+                                <li><a id="pageplus" href="#" onclick="changegroup(2)">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr />
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="admin-content-footer">
+        <hr>
+        <p class="am-padding-left"></p>
+    </footer>
+
+</div>
+<!-- content end -->
+</div>
+
+
+
+<footer>
+    <hr>
+    <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+    $("#checkall").click(function(){
+        $("input[name='id[]']").each(function(){
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
+        });
+    })
+
+    $(document).on('click','table thead input[type="checkbox"]',function(){
+        if($(this).is(':checked')){
+            $('tbody input[type="checkbox"]').prop('checked',true);
+        }else{
+            $('tbody input[type="checkbox"]').prop('checked',false);
+        }
+    })
+    $(document).on('click','table tbody input[type="checkbox"]',function(){
+        console.log($('table tbody input[type="checkbox"]'))
+        if($('table tbody input[type="checkbox"]').length==$('table tbody input[type="checkbox"]:checked').length){
+            $('thead input[type="checkbox"]').prop('checked',true);
+        }else{
+            $('thead input[type="checkbox"]').prop('checked',false);
+        }
+    })
+
+
+
+</script>
+<script src="./assets/js/getUrl.js"></script>
+<script src="./assets/js/news.js"></script>
+<script>
+    var storage = window.localStorage;
+    if(storage["has"]!="yes"){
+        window.location.href="login.html";
+    }
+</script>
+</body>
+</html>
