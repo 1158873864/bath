@@ -15,7 +15,7 @@ public class AdminItem {
 		this.password = admin.getPassword();
 		this.limits = admin.getLimits();
 		this.date = admin.getDate();
-		this.face=admin.getFace();
+		this.face=admin.getAvatarUrl();
 	}
 
 	public String getId() {

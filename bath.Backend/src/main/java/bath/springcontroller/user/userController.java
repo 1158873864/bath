@@ -82,13 +82,12 @@ public class userController {
         }
     }
 
-
+    //// TODO 头像有问题
     @ApiOperation(value = "增加用户", notes = "增加用户")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "openid", value = "用户编号", required = true, dataType = "String"),
             @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "phone", value = "用户手机", required = true, dataType = "String"),
-            @ApiImplicitParam(name="addresses",value="地址",required = true,dataType = "ArrayList")
+            @ApiImplicitParam(name = "phone", value = "用户手机", required = true, dataType = "String")
     })
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     @ApiResponses(value = {
@@ -96,7 +95,7 @@ public class userController {
             @ApiResponse(code = 401, message = "Unauthorized", response = WrongResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
     @ResponseBody
-    public InfoResponse addUser(@RequestParam(name = "openid") String openid, @RequestParam(name = "username") String username, @RequestParam(name="phone")String phone, @RequestParam(name="addresses")ArrayList<Address> addresses) throws NotExistException {
+    public InfoResponse addUser(@RequestParam(name = "openid") String openid, @RequestParam(name = "username") String username, @RequestParam(name="phone")String phone) throws NotExistException {
         boolean is = true;
         File file = new File(headPath);
         String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
@@ -126,28 +125,25 @@ public class userController {
         if (file.exists() && file.isFile()) {
             file.delete();
         }
-        InfoResponse r = userBlService.addUser(openid, username,path,phone,addresses);
+        InfoResponse r = userBlService.addUser(openid, username,path,phone);
         headPath = "";
         return r;
     }
 
-    //todo 地址传不过来QAQ
     @ApiOperation(value = "增加用户", notes = "增加用户")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "openid", value = "用户编号", required = true, dataType = "String"),
-//            @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
-//            @ApiImplicitParam(name = "phone", value = "用户手机", required = true, dataType = "String"),
-//            @ApiImplicitParam(name="addresses",value="默认地址",required = true,dataType = "List")
-//
-//    })
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "openid", value = "用户编号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "phone", value = "用户手机", required = true, dataType = "String"),
+    })
     @RequestMapping(path = "/addUserWithoutAvatar", method = RequestMethod.POST,produces = "application/json")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = EventLoadResponse.class),
             @ApiResponse(code = 401, message = "Unauthorized", response = WrongResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
     @ResponseBody
-    public InfoResponse addUserWithoutFace(@RequestParam(name = "openid") String openid, @RequestParam(name = "username") String username, @RequestParam(name = "phone") String phone, @RequestParam(name="addresses")List<Address> addresses) throws NotExistException {
-        InfoResponse r = userBlService.addUser(openid, username, "", phone, addresses);
+    public InfoResponse addUserWithoutFace(@RequestParam(name = "openid") String openid, @RequestParam(name = "username") String username, @RequestParam(name = "phone") String phone) throws NotExistException {
+        InfoResponse r = userBlService.addUser(openid, username, "", phone);
         return r;
     }
     @ApiOperation(value = "获取用户列表", notes = "获取用户列表")
@@ -177,6 +173,7 @@ public class userController {
         return r;
     }
 
+    //todo 考虑一下要不要这个方法
     @ApiOperation(value = "更新用户", notes = "更新用户")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "openid", value = "用户编号", required = true, dataType = "String"),
@@ -376,8 +373,7 @@ public class userController {
             @ApiImplicitParam(name = "openid", value = "用户编号", required = true, dataType = "String"),
             @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
             @ApiImplicitParam(name="avatarUrl",value="用户头像",required = true,dataType = "String"),
-            @ApiImplicitParam(name = "phone", value = "用户手机", required = true, dataType = "String"),
-            @ApiImplicitParam(name="addresses",value="地址",required = true,dataType = "ArrayList")
+            @ApiImplicitParam(name = "phone", value = "用户手机", required = true, dataType = "String")
     })
     @RequestMapping(value = "/updateMyProfile", method = RequestMethod.GET)
     @ApiResponses(value = {
@@ -385,7 +381,7 @@ public class userController {
             @ApiResponse(code = 401, message = "Unauthorized", response = WrongResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
     @ResponseBody
-    public ResponseEntity<Response> updateMyProfile(@RequestParam(name = "openid") String openid, @RequestParam(name = "username") String username, @RequestParam("avatarUrl")String avatarUrl,@RequestParam("phone")String phone,@RequestParam("addresses")ArrayList<Address> addresses) throws NotExistException {
+    public ResponseEntity<Response> updateMyProfile(@RequestParam(name = "openid") String openid, @RequestParam(name = "username") String username, @RequestParam("avatarUrl")String avatarUrl,@RequestParam("phone")String phone) throws NotExistException {
         File file = new File(headPath);
         String uuid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
         String[] temp = headPath.split("\\.");
@@ -419,16 +415,14 @@ public class userController {
             file.delete();
         }
         headPath = "";
-        return new ResponseEntity<>(userBlService.updateMyProfile(openid, username, path, phone,addresses), HttpStatus.OK);
+        return new ResponseEntity<>(userBlService.updateMyProfile(openid, username, path, phone), HttpStatus.OK);
     }
 
     @ApiOperation(value = "用户修改自己的个人信息", notes = "用户修改自己的个人信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "openid", value = "用户编号", required = true, dataType = "String"),
             @ApiImplicitParam(name = "username", value = "用户名", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "avatarUrl", value = "用户头像", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "phone", value = "用户手机", required = true, dataType = "String"),
-            @ApiImplicitParam(name="addresses",value="地址",required = true,dataType="ArrayList")
+            @ApiImplicitParam(name = "phone", value = "用户手机", required = true, dataType = "String")
     })
     @RequestMapping(value = "/updateMyProfileWithoutFile", method = RequestMethod.GET)
     @ApiResponses(value = {
@@ -436,7 +430,61 @@ public class userController {
             @ApiResponse(code = 401, message = "Unauthorized", response = WrongResponse.class),
             @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
     @ResponseBody
-    public ResponseEntity<Response> updateMyProfileWithoutFile(@RequestParam(name = "openid") String openid, @RequestParam(name = "username") String username, @RequestParam(name = "avatarUrl") String avatarUrl, @RequestParam(name = "phone") String phone,@RequestParam("addresses")ArrayList<Address> addresses)throws NotExistException {
-        return new ResponseEntity<>(userBlService.updateMyProfile(openid, username, avatarUrl, phone, addresses), HttpStatus.OK);
+    public ResponseEntity<Response> updateMyProfileWithoutFile(@RequestParam(name = "openid") String openid, @RequestParam(name = "username") String username, @RequestParam(name = "phone") String phone)throws NotExistException {
+        return new ResponseEntity<>(userBlService.updateMyProfile(openid, username, "", phone), HttpStatus.OK);
+    }
+
+    @ApiOperation(value="用户添加地址",notes="用户添加地址")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="openid",value="用户编号",required = true,dataType = "String"),
+            @ApiImplicitParam(name="receiver",value="收件人姓名",required = true,dataType = "String"),
+            @ApiImplicitParam(name="phone",value="收件人电话",required = true,dataType = "String"),
+            @ApiImplicitParam(name="zone",value="地区信息",required = true,dataType = "String"),
+            @ApiImplicitParam(name="detailAddress",value="详细地址",required = true,dataType = "String"),
+            @ApiImplicitParam(name="postcode",value="邮政编码",required = true,dataType = "String")
+    })
+    @RequestMapping(value="/addAddress",method=RequestMethod.POST)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = EventLoadResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = WrongResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
+    @ResponseBody
+    public ResponseEntity<Response> addAddress(@RequestParam(name="openid")String openid,@RequestParam(name="receiver")String receiver,@RequestParam(name="phone")String phone,@RequestParam(name="zone")String zone,@RequestParam(name="detailAddress")String detailAddress,@RequestParam(name="postcode")String postcode)throws NotExistException{
+        return new ResponseEntity<>(userBlService.addAddress(openid,receiver,phone,zone,detailAddress,postcode),HttpStatus.OK);
+    }
+
+    @ApiOperation(value="用户删除地址",notes="用户删除地址")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="openid",value="用户编号",required = true,dataType = "String"),
+            @ApiImplicitParam(name="addressId",value="地址编号",required = true,dataType = "int"),
+    })
+    @RequestMapping(value="/deleteAddress",method=RequestMethod.POST)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = EventLoadResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = WrongResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
+    @ResponseBody
+    public ResponseEntity<Response> deleteAddress(@RequestParam(name="openid")String openid,@RequestParam(name="addressId")int addressId)throws NotExistException{
+        return new ResponseEntity<>(userBlService.deleteAddress(openid,addressId),HttpStatus.OK);
+    }
+
+    @ApiOperation(value="用户更新地址",notes="用户更新地址")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="openid",value="用户编号",required = true,dataType = "String"),
+            @ApiImplicitParam(name="addressId",value="地址编号",required = true,dataType = "int"),
+            @ApiImplicitParam(name="receiver",value="收件人姓名",required = true,dataType = "String"),
+            @ApiImplicitParam(name="phone",value="收件人电话",required = true,dataType = "String"),
+            @ApiImplicitParam(name="zone",value="地区信息",required = true,dataType = "String"),
+            @ApiImplicitParam(name="detailAddress",value="详细地址",required = true,dataType = "String"),
+            @ApiImplicitParam(name="postcode",value="邮政编码",required = true,dataType = "String")
+    })
+    @RequestMapping(value="/updateAddress",method=RequestMethod.POST)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = EventLoadResponse.class),
+            @ApiResponse(code = 401, message = "Unauthorized", response = WrongResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
+    @ResponseBody
+    public ResponseEntity<Response> updateAddress(@RequestParam(name="openid")String openid,@RequestParam(name="addressId")int addressId,@RequestParam(name="receiver")String receiver,@RequestParam(name="phone")String phone,@RequestParam(name="zone")String zone,@RequestParam(name="detailAddress")String detailAddress,@RequestParam(name="postcode")String postcode)throws NotExistException{
+        return new ResponseEntity<>(userBlService.updateAddress(openid,addressId,receiver,phone,zone,detailAddress,postcode),HttpStatus.OK);
     }
 }

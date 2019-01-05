@@ -19,7 +19,6 @@ import bath.security.jwt.JwtService;
 import bath.security.jwt.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -47,8 +46,8 @@ public class UserBlServiceImpl implements UserBlService {
 	}
 
 	@Override
-	public InfoResponse addUser(String openid, String username, String avatarUrl, String phone, List<Address> addresses) throws NotExistException {
-		userDataService.addUser(new User(openid, username, avatarUrl, phone, addresses));
+	public InfoResponse addUser(String openid, String username, String avatarUrl, String phone) throws NotExistException {
+		userDataService.addUser(new User(openid, username, avatarUrl, phone));
 		return new InfoResponse();
 	}
 
@@ -68,9 +67,9 @@ public class UserBlServiceImpl implements UserBlService {
 	}
 
 	@Override
-	public InfoResponse updateUser(String openid, String username, Role role, String avatarUrl, String phone, String levelName, int integration, double balance, List<Order> orders, List<Groupon> carts, List<Address> addresses, List<Coupon> coupons) throws NotExistException {
+	public InfoResponse updateUser(String openid, String username, Role role, String avatarUrl, String phone, String levelname, int integration, double balance, List<Order> orders, List<Groupon> carts, List<Address> addresses, List<Coupon> coupons) throws NotExistException {
 		User user = userDataService.getUserByOpenid(openid);
-		userDataService.updateUserByOpenid(openid,username,role,avatarUrl,phone,levelName,integration,balance,orders,carts,addresses,coupons);
+		userDataService.updateUserByOpenid(openid,username,role,avatarUrl,phone,levelname,integration,balance,orders,carts,addresses,coupons);
 		return new InfoResponse();
 	}
 
@@ -275,12 +274,70 @@ public class UserBlServiceImpl implements UserBlService {
 	}
 
 	@Override
-	public InfoResponse updateMyProfile(String openid, String username, String avatarUrl, String phone, List<Address> addresses)throws NotExistException {
+	public InfoResponse updateMyProfile(String openid, String username, String avatarUrl, String phone)throws NotExistException {
 		User user = userDataService.getUserByOpenid(openid);
-		userDataService.updateUserByOpenid(openid, username,user.getRole(), avatarUrl, phone,user.getLevelName(),user.getIntegration(),user.getBalance(),user.getOrders(),user.getCarts(), addresses,user.getCoupons());
+		userDataService.updateUserByOpenid(openid, username,user.getRole(), avatarUrl, phone,user.getLevel(),user.getIntegration(),user.getBalance(),user.getOrders(),user.getCarts(), user.getAddresses(),user.getCoupons());
 		return new InfoResponse();
 	}
 
+
+	@Override
+	public InfoResponse addAddress(String openid,String receiver, String phone, String zone, String detailAddress, String postcode) throws NotExistException{
+		User user=userDataService.getUserByOpenid(openid);
+		Address address=new Address(receiver,phone,zone,detailAddress,postcode);
+		List<Address> addresses=user.getAddresses();
+		if(addresses==null || addresses.size()<1)
+			addresses=new ArrayList<>();
+		addresses.add(address);
+		user.setAddresses(addresses);
+		userDataService.saveUser(user);
+		//addressDataService.addAddress(address);
+		return new InfoResponse();
+	}
+
+	@Override
+	public InfoResponse deleteAddress(String openid, int addressId) throws NotExistException {
+		User user=userDataService.getUserByOpenid(openid);
+		List<Address> addresses=user.getAddresses();
+		if(addresses==null || addresses.size()<1)
+			return new InfoResponse("Fail");
+		for(Address temp:addresses){
+			if(temp.getId()==addressId){
+				addresses.remove(temp);
+				break;
+			}
+		}
+		user.setAddresses(addresses);
+		userDataService.saveUser(user);
+		return new InfoResponse();
+	}
+
+	@Override
+	public InfoResponse updateAddress(String openid, int addressId, String receiver, String phone, String zone, String detailAddress, String postcode) throws NotExistException {
+		User user=userDataService.getUserByOpenid(openid);
+		List<Address> addresses=user.getAddresses();
+		if(addresses==null || addresses.size()<1)
+			throw new NotExistException("地址id",addressId+"");
+		boolean isExist=false;
+		for(Address temp:addresses){
+			if(temp.getId()==addressId){
+				isExist=true;
+				addresses.remove(temp);
+				temp.setReceiver(receiver);
+				temp.setDetailAddress(detailAddress);
+				temp.setPhone(phone);
+				temp.setPostcode(postcode);
+				temp.setZone(zone);
+				addresses.add(temp);
+				break;
+			}
+		}
+		if(isExist==false)
+			throw new NotExistException("地址id",addressId+"");
+		user.setAddresses(addresses);
+		userDataService.saveUser(user);
+		return new InfoResponse();
+	}
 
 
 }

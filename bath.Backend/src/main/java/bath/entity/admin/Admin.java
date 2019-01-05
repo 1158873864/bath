@@ -24,18 +24,18 @@ public class Admin {
 	@Column(name = "date")
 	private String date; //创建时间
 
-	@Column(name = "face")
-	private String face; //管理员头像
+	@Column(name = "avatarUrl")
+	private String avatarUrl; //管理员头像
 
 	public Admin() {
 	}
 
-	public Admin(String username, String password, String limits, String date, String face) {
+	public Admin(String username, String password, String limits, String date, String avatarUrl) {
 		this.username = username;
 		this.password = password;
 		this.limits = limits;
 		this.date = date;
-		this.face = face;
+		this.avatarUrl = avatarUrl;
 	}
 
 	public String getId() {
@@ -78,11 +78,11 @@ public class Admin {
 		this.date = date;
 	}
 
-	public String getFace() {
-		return face;
+	public String getAvatarUrl() {
+		return avatarUrl;
 	}
 
-	public void setFace(String face) {
-		this.face = face;
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
 	}
 }

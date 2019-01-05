@@ -19,7 +19,7 @@ public interface UserDataService {
 
 	List<User> getAllUsers();
 
-	void updateUserByOpenid(String openid, String username, Role role, String avatarUrl, String phone, String levelName, int integration, double balance, List<Order> orders, List<Groupon> carts, List<Address> addresses, List<Coupon> coupons) throws NotExistException;
+	void updateUserByOpenid(String openid, String username, Role role, String avatarUrl, String phone, String level, int integration, double balance, List<Order> orders, List<Groupon> carts, List<Address> addresses, List<Coupon> coupons) throws NotExistException;
 
 	void deleteUserByOpenid(String openid) throws NotExistException;
 }

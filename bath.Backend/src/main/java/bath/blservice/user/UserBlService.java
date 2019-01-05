@@ -25,10 +25,9 @@ public interface UserBlService {
 	 * @param username 用户名
 	 * @param avatarUrl 头像url
 	 * @param  phone 电话号码
-	 * @param addresses 地址
 	 * @return 是否成功
 	 */
-	InfoResponse addUser(String openid, String username, String avatarUrl, String phone, List<Address> addresses) throws NotExistException;
+	InfoResponse addUser(String openid, String username, String avatarUrl, String phone) throws NotExistException;
 
 	/**
 	 * 根据微信openid获取用户信息(Admin)
@@ -143,13 +142,39 @@ public interface UserBlService {
 	 * @param username 用户名
 	 * @param avatarUrl 头像url
 	 * @param  phone 电话
-	 * @param addresses 地址
 	 * @return 是否成功
 	 */
-	InfoResponse updateMyProfile(String openid, String username, String avatarUrl, String phone, List<Address> addresses) throws NotExistException;
+	InfoResponse updateMyProfile(String openid, String username, String avatarUrl, String phone) throws NotExistException;
+	/**
+	 * 用户添加自己的收获地址
+	 * @param receiver
+	 * @param phone
+	 * @param zone
+	 * @param detailAddress
+	 * @param postcode
+	 * @return 是否成功
+	 */
+	InfoResponse addAddress(String openid,String receiver,String phone,String zone,String detailAddress,String postcode)throws NotExistException;
 
+	/**
+	 * 用户删除自己的地址
+	 * @param openid
+	 * @param addressId
+	 * @return 是否成功
+	 */
+	InfoResponse deleteAddress(String openid,int addressId)throws NotExistException;
 
-
-
+	/**
+	 * 用户更改自己的地址
+	 * @param openid
+	 * @param addressId
+	 * @param receiver
+	 * @param phone
+	 * @param zone
+	 * @param detailAddress
+	 * @param postcode
+	 * @return 是否成功
+	 */
+	InfoResponse updateAddress(String openid,int addressId,String receiver,String phone,String zone,String detailAddress,String postcode)throws NotExistException;
 
 }

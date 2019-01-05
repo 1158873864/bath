@@ -8,6 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Level {
+
 	@Id
 	@Column
 	private String name; //会员级别名

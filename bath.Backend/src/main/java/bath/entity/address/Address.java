@@ -1,19 +1,17 @@
 package bath.entity.address;
-import bath.entity.user.User;
 
 import javax.persistence.*;
 
 @Entity
-@Table
+
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
-
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private User user;
     @Column(name="receiver")
     private String receiver;//收货人姓名
 
@@ -29,6 +27,17 @@ public class Address {
     @Column(name="postcode")
     private String postcode;//邮政编码
 
+    public Address(){}
+
+    public Address(String receiver,String phone,String zone,String detailAddress,String postcode){
+        //this.user=user;
+        this.receiver=receiver;
+        this.phone=phone;
+        this.zone=zone;
+        this.detailAddress=detailAddress;
+        this.postcode=postcode;
+    }
+
     public int getId() {
         return id;
     }
@@ -37,13 +46,13 @@ public class Address {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public String getReceiver() {
         return receiver;

@@ -16,27 +16,27 @@ public class User {
     @Id
     @Column
     private String openid;//用户微信编号
-    @Column
+    @Column(name="username")
     private String username; //用户名
     @Column(name = "role")
-    private Role role;
-    @Column
+    private Role role;//角色
+    @Column(name="avatarUrl")
     private String avatarUrl; //用户头像
-    @Column
+    @Column(name="phone")
     private String phone; //电话号码
-    @Column
-    private String levelName; //用户所属会员等级
-    @Column
+    @Column(name="level")
+    private String level; //用户所属会员等级
+    @Column(name="integration")
     private int integration;//积分
-    @Column
+    @Column(name="balance")
     private double balance;//储值金余额
-    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Order> orders;//订单
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Groupon> carts;//购物车
-    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addresses;//地址
-    @OneToMany(mappedBy = "user", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Coupon> coupons;//优惠券
 
     public User() {
@@ -48,7 +48,7 @@ public class User {
         this.role = new Role("ROLE_USER");
         this.avatarUrl = avatarUrl;
         this.phone = "";
-        this.levelName = "common";
+        this.level = "common";
         this.integration = 0;
         this.balance = 0;
         this.orders = new ArrayList<>();
@@ -58,18 +58,18 @@ public class User {
 
     }
 
-    public User(String openid, String username, String avatarUrl, String phone, List<Address> addresses) {
+    public User(String openid, String username, String avatarUrl, String phone) {
         this.openid = openid;
         this.username = username;
         this.role = new Role("ROLE_USER");
         this.avatarUrl = avatarUrl;
         this.phone = phone;
-        this.levelName = "common";
+        this.level = "common";
         this.integration = 0;
         this.balance = 0;
         this.orders = new ArrayList<>();
         this.carts = new ArrayList<>();
-        this.addresses = addresses;
+        this.addresses = new ArrayList<>();
         this.coupons = new ArrayList<>();
 
     }
@@ -98,12 +98,10 @@ public class User {
         this.phone = phone;
     }
 
-    public String getLevelName() {
-        return levelName;
-    }
+    public String getLevel() { return level; }
 
-    public void setLevelName(String levelName) {
-        this.levelName = levelName;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getAvatarUrl() {

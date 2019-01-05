@@ -27,7 +27,7 @@ public class UserItem {
 		this.avatarUrl=user.getAvatarUrl();
 		this.role=user.getRole();
 		this.phone=user.getPhone();
-		this.levelName=user.getLevelName();
+		this.levelName=user.getLevel();
 		this.integration=user.getIntegration();
 		this.balance=user.getBalance();
 		this.orders=user.getCarts();

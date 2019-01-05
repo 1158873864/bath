@@ -6,6 +6,7 @@ import bath.entity.address.Address;
 import bath.entity.coupon.Coupon;
 import bath.entity.groupon.Groupon;
 import bath.entity.order.Order;
+import bath.entity.user.Level;
 import bath.entity.user.User;
 import bath.exception.NotExistException;
 import bath.publicdatas.account.Role;
@@ -50,7 +51,7 @@ public class UserDataServiceImpl implements UserDataService {
 	}
 
 	@Override
-	public void updateUserByOpenid(String openid, String username, Role role, String avatarUrl, String phone, String levelName, int integration, double balance, List<Order> orders, List<Groupon> carts, List<Address> addresses, List<Coupon> coupons) throws NotExistException {
+	public void updateUserByOpenid(String openid, String username, Role role, String avatarUrl, String phone, String level, int integration, double balance, List<Order> orders, List<Groupon> carts, List<Address> addresses, List<Coupon> coupons) throws NotExistException {
 		Optional<User> optionalUser = userDao.findById(openid);
 		if(optionalUser.isPresent()) {
 			User user = optionalUser.get();
@@ -58,7 +59,7 @@ public class UserDataServiceImpl implements UserDataService {
 			user.setRole(role);
 			user.setAvatarUrl(avatarUrl);
 			user.setAvatarUrl(phone);
-			user.setLevelName(levelName);
+			user.setLevel(level);
 			user.setIntegration(integration);
 			user.setBalance(balance);
 			user.setOrders(orders);

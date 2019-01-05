@@ -1,14 +1,14 @@
 package bath.entity.groupon;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table
 public class Groupon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -19,17 +19,33 @@ public class Groupon {
     @Column(name = "price")
     private double price;
 
+    @Column(name = "takeEffectTime")
+    private Date takeEffectTime;
+
+    @Column(name = "loseEffectTime")
+    private Date loseEffectTime;
+
+    @Column(name="putOnShelvesTime")
+    private Date putOnShelveTime;
+
+    @Column(name="pullOffShelvesTime")
+    private Date pullOffShelveTime;
+
     @Column(name = "instruction")
     private String instruction;
 
     @Column(name = "description")
     private String description;
 
-    public int getId() {
+    @Column(name = "amount")
+    private int amount;
+
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -61,7 +77,9 @@ public class Groupon {
         return instruction;
     }
 
-    public void setInstruction(String instruction) { this.instruction = instruction; }
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
+    }
 
     public String getDescription() {
         return description;
@@ -69,5 +87,42 @@ public class Groupon {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getTakeEffectTime() {
+        return takeEffectTime;
+    }
+
+    public void setTakeEffectTime(Date takeEffectTime) {
+        this.takeEffectTime = takeEffectTime;
+    }
+
+    public Date getLoseEffectTime() {
+        return loseEffectTime;
+    }
+
+    public void setLoseEffectTime(Date loseEffectTime) {
+        this.loseEffectTime = loseEffectTime;
+    }
+
+
+    public Date getPutOnShelveTime() {
+        return putOnShelveTime;
+    }
+
+    public void setPutOnShelveTime(Date putOnShelveTime) {
+        this.putOnShelveTime = putOnShelveTime;
+    }
+
+    public Date getPullOffShelveTime() {
+        return pullOffShelveTime;
+    }
+
+    public void setPullOffShelveTime(Date pullOffShelveTime) {
+        this.pullOffShelveTime = pullOffShelveTime;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

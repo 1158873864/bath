@@ -52,14 +52,11 @@ public class Order {
 
     @Column(name = "paySign")
     private String paySign;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     public Order() {
     }
 
-    public Order(String orderUUID, OrderState orderState, double total, Date date, String address, String comment, List<OrderFood> foods, String phone, String timeStamp, String nonceStr, String pakcage, String signType, String paySign, User user) {
+    public Order(String orderUUID, OrderState orderState, double total, Date date, String address, String comment, List<OrderFood> foods, String phone, String timeStamp, String nonceStr, String pakcage, String signType, String paySign) {
         this.orderUUID = orderUUID;
         this.orderState = orderState;
         this.total = total;
@@ -73,7 +70,6 @@ public class Order {
         this.pakcage = pakcage;
         this.signType = signType;
         this.paySign = paySign;
-        this.user = user;
     }
 
     public int getId() {
@@ -90,14 +86,6 @@ public class Order {
 
     public void setOrderState(OrderState orderState) {
         this.orderState = orderState;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public double getTotal() {

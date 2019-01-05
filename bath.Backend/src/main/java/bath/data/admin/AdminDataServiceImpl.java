@@ -62,7 +62,7 @@ public class AdminDataServiceImpl implements AdminDataService {
 			admin.setPassword(password);
 			admin.setLimits(limits);
 			admin.setDate(date);
-			admin.setFace(face);
+			admin.setAvatarUrl(face);
 			adminDao.save(admin);
 		} else {
 			throw new NotExistException("Admin ID", id);

@@ -82,7 +82,7 @@ audio:not([controls]) {
   height: 0;
 }
 /**
- * Address `[hidden]` styling not present in IE 8/9/10.
+ * address `[hidden]` styling not present in IE 8/9/10.
  * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
  */
 [hidden],
@@ -99,7 +99,7 @@ a {
   background-color: transparent;
 }
 /**
- * Address `outline` inconsistency between Chrome and other browsers.
+ * address `outline` inconsistency between Chrome and other browsers.
  */
 a:focus {
   outline: thin dotted;
@@ -121,13 +121,13 @@ a {
   text-decoration: none;
 }
 /**
- * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ * address styling not present in IE 8/9, Safari 5, and Chrome.
  */
 abbr[title] {
   border-bottom: 1px dotted;
 }
 /**
- * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ * address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
 b,
 strong {
@@ -146,7 +146,7 @@ q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
 /**
- * Address inconsistent and variable font size in all browsers.
+ * address inconsistent and variable font size in all browsers.
  */
 small {
   font-size: 80%;
@@ -194,7 +194,7 @@ svg:not(:root) {
 /* Grouping content
    ========================================================================== */
 /**
- * Address margin not present in IE 8/9 and Safari.
+ * address margin not present in IE 8/9 and Safari.
  */
 figure {
   margin: 0;
@@ -233,7 +233,7 @@ legend {
  * 1. Correct color not being inherited.
  *    Known issue: affects color of disabled elements.
  * 2. Correct font properties not being inherited.
- * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ * 3. address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
 button,
 input,
@@ -248,13 +248,13 @@ textarea {
   /* 3 */
 }
 /**
- * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ * address `overflow` set to `hidden` in IE 8/9/10/11.
  */
 button {
   overflow: visible;
 }
 /**
- * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
 button,
@@ -262,7 +262,7 @@ input {
   line-height: normal;
 }
 /**
- * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * address inconsistent `text-transform` inheritance for `button` and `select`.
  * All other form control elements do not inherit `text-transform` values.
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
@@ -290,7 +290,7 @@ input[type="submit"] {
 /*
  * 1. Improves consistency of cursor style for clickable elements
  * 2. Removes excess padding in IE 8/9.
- * 3. Address box sizing set to `content-box` in IE 8/9/10.
+ * 3. address box sizing set to `content-box` in IE 8/9/10.
  */
 input[type="radio"],
 input[type="checkbox"] {
@@ -327,8 +327,8 @@ input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 /**
- * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
- * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ * 1. address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. address `box-sizing` set to `border-box` in Safari and Chrome
  *    (include `-moz` to future-proof).
  */
 input[type="search"] {
@@ -547,7 +547,7 @@ dd + dt {
 }
 /**
  * Horizontal rule
- * 1. Address differences between Firefox and other browsers.
+ * 1. address differences between Firefox and other browsers.
  */
 hr {
   display: block;
@@ -560,7 +560,7 @@ hr {
           box-sizing: content-box;
   /* 1 */
 }
-/* Address */
+/* address */
 address {
   font-style: normal;
 }

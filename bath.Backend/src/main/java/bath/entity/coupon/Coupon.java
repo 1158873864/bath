@@ -1,6 +1,5 @@
 package bath.entity.coupon;
 
-import bath.entity.user.User;
 import javax.persistence.*;
 
 @Entity
@@ -10,10 +9,6 @@ public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @Column(name="isUsed")
     private boolean isUsed;
@@ -34,14 +29,6 @@ public class Coupon {
     public void setId(int id) {
         this.id = id;
     }
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
     public boolean isUsed() {
         return isUsed;
