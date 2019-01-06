@@ -5,20 +5,20 @@ import bath.response.Response;
 import java.util.List;
 
 public class OrderLoadResponse extends Response {
-    private List<OrderItem> orders;
+    private List<OrderResponseItem> orders;
 
     public OrderLoadResponse() {
     }
 
-    public OrderLoadResponse(List<OrderItem> orders) {
+    public OrderLoadResponse(List<OrderResponseItem> orders) {
         this.orders = orders;
     }
 
-    public List<OrderItem> getOrders() {
+    public List<OrderResponseItem> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<OrderItem> orders) {
+    public void setOrders(List<OrderResponseItem> orders) {
         this.orders = orders;
     }
 }

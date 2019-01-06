@@ -15,7 +15,6 @@ public class WxOrderResponse extends Response {
 
     private String timeStamp;
     private String nonceStr;
-    private String pakcage;
     private String signType;
     private String paySign;
 
@@ -25,7 +24,6 @@ public class WxOrderResponse extends Response {
     public WxOrderResponse(String timeStamp, String nonceStr, String pakcage) {
         this.timeStamp = timeStamp;
         this.nonceStr = nonceStr;
-        this.pakcage = pakcage;
         this.signType = SIGN_TYPE;
         SortedMap<String, String> sortedMap = new TreeMap<>();
         sortedMap.put("timeStamp", timeStamp + "");
@@ -49,14 +47,6 @@ public class WxOrderResponse extends Response {
 
     public void setNonceStr(String nonceStr) {
         this.nonceStr = nonceStr;
-    }
-
-    public String getPakcage() {
-        return pakcage;
-    }
-
-    public void setPakcage(String pakcage) {
-        this.pakcage = pakcage;
     }
 
     public String getSignType() {

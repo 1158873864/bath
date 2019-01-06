@@ -1,6 +1,5 @@
 package bath.entity.order;
 
-import bath.entity.user.User;
 import bath.publicdatas.order.OrderState;
 import javax.persistence.*;
 import java.util.Date;
@@ -9,43 +8,42 @@ import java.util.List;
 @Entity
 @Table(name = "bathOrder")
 public class Order {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @Column(name = "id")
+    private String id;
 
-    @Column(name = "orderUUID")
-    private String orderUUID;
-
-    @Column(name = "orderState")
-    private OrderState orderState;
-
+    //订单总价
     @Column(name = "total")
     private double total;
+
+    //积分优惠
+    @Column(name="integration")
+    private double integration;
+
+    //抵用券/优惠券 抵用金额
+    @Column(name="coupon")
+    private double coupon;
+
+    //实际付款
+    @Column(name="actualCost")
+    private double actualCost;
 
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "orderItems")
+    @ElementCollection(targetClass = OrderItem.class)
+    private List<OrderItem> orderItems;
 
-    @Column(name = "comment")
-    private String comment;
-
-    @Column(name = "foods")
-    @ElementCollection(targetClass = OrderFood.class)
-    private List<OrderFood> foods;
-
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "orderState")
+    private OrderState orderState;
 
     @Column(name = "timeStamp")
     private String timeStamp;
 
     @Column(name = "nonceStr")
     private String nonceStr;
-
-    @Column(name = "pakcage")
-    private String pakcage;
 
     @Column(name = "signType")
     private String signType;
@@ -56,28 +54,19 @@ public class Order {
     public Order() {
     }
 
-    public Order(String orderUUID, OrderState orderState, double total, Date date, String address, String comment, List<OrderFood> foods, String phone, String timeStamp, String nonceStr, String pakcage, String signType, String paySign) {
-        this.orderUUID = orderUUID;
+    public Order(String id,double total,double integration,double coupon,double avctualCost,Date date,List<OrderItem> orderItems, OrderState orderState, String timeStamp, String nonceStr, String signType, String paySign) {
+        this.id = id;
+        this.total=total;
+        this.integration=integration;
+        this.coupon=coupon;
+        this.actualCost=avctualCost;
+        this.date=date;
+        this.orderItems=orderItems;
         this.orderState = orderState;
-        this.total = total;
-        this.date = date;
-        this.address = address;
-        this.comment = comment;
-        this.foods = foods;
-        this.phone = phone;
         this.timeStamp = timeStamp;
         this.nonceStr = nonceStr;
-        this.pakcage = pakcage;
         this.signType = signType;
         this.paySign = paySign;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public OrderState getOrderState() {
@@ -100,50 +89,6 @@ public class Order {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public List<OrderFood> getFoods() {
-        return foods;
-    }
-
-    public void setFoods(List<OrderFood> foods) {
-        this.foods = foods;
-    }
-
-    public String getOrderUUID() {
-        return orderUUID;
-    }
-
-    public void setOrderUUID(String orderUUID) {
-        this.orderUUID = orderUUID;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getTimeStamp() {
         return timeStamp;
     }
@@ -160,14 +105,6 @@ public class Order {
         this.nonceStr = nonceStr;
     }
 
-    public String getPakcage() {
-        return pakcage;
-    }
-
-    public void setPakcage(String pakcage) {
-        this.pakcage = pakcage;
-    }
-
     public String getSignType() {
         return signType;
     }
@@ -182,5 +119,49 @@ public class Order {
 
     public void setPaySign(String paySign) {
         this.paySign = paySign;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public double getIntegration() {
+        return integration;
+    }
+
+    public void setIntegration(double integration) {
+        this.integration = integration;
+    }
+
+    public double getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(double coupon) {
+        this.coupon = coupon;
+    }
+
+    public double getActualCost() {
+        return actualCost;
+    }
+
+    public void setActualCost(double actualCost) {
+        this.actualCost = actualCost;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
