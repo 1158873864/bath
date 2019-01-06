@@ -1,8 +1,9 @@
 package bath.response.groupon;
 
 import bath.entity.groupon.Groupon;
+import bath.response.Response;
 
-public class GrouponResponse {
+public class GrouponResponse extends Response {
     private Groupon groupon;
 
     public GrouponResponse() {

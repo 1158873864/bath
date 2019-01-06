@@ -31,9 +31,6 @@ public class Groupon {
     @Column(name="pullOffShelvesTime")
     private Date pullOffShelveTime;
 
-    @Column(name = "instruction")
-    private String instruction;
-
     @Column(name = "description")
     private String description;
 
@@ -73,13 +70,6 @@ public class Groupon {
         this.price = price;
     }
 
-    public String getInstruction() {
-        return instruction;
-    }
-
-    public void setInstruction(String instruction) {
-        this.instruction = instruction;
-    }
 
     public String getDescription() {
         return description;

@@ -12,5 +12,4 @@ public interface GrouponDataService {
     List<Groupon> getAll();
     void updateGroupon(Groupon groupon);
     void deleteGrouponById(String id) throws NotExistException;
-
 }
