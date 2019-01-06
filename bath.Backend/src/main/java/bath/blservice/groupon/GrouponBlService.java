@@ -50,7 +50,7 @@ public interface GrouponBlService {
      * @param id
      * @return 是否成功
      */
-    GrouponUpdateResponse pullOffshelves(String id)throws NotExistException;
+    GrouponUpdateResponse pullOffShelves(String id)throws NotExistException;
 
     /**
      * 通过id查找团购

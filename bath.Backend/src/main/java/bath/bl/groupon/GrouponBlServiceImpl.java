@@ -71,7 +71,7 @@ public class GrouponBlServiceImpl implements GrouponBlService {
     }
 
     @Override
-    public GrouponUpdateResponse pullOffshelves(String id) throws NotExistException {
+    public GrouponUpdateResponse pullOffShelves(String id) throws NotExistException {
         Groupon groupon=grouponDataService.findById(id);
         groupon.setPullOffShelveTime(new Date());
         grouponDataService.updateGroupon(groupon);

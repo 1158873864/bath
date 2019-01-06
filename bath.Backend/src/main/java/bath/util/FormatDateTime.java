@@ -16,17 +16,17 @@ public class FormatDateTime {
 
     public static String toShortDateString() {
         Date dt = new Date();
-        SimpleDateFormat myFmt = new SimpleDateFormat("yy年MM月dd日HH时mm分");
+        SimpleDateFormat myFmt = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
         return myFmt.format(dt);
     }
 
     public static String toShortDateString(Date dt) {
-        SimpleDateFormat myFmt = new SimpleDateFormat("yy年MM月dd日HH时mm分");
+        SimpleDateFormat myFmt = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
         return myFmt.format(dt);
     }
 
     public static Date fromShortDateString(String dt) {
-        SimpleDateFormat myFmt = new SimpleDateFormat("yy年MM月dd日HH时mm分");
+        SimpleDateFormat myFmt = new SimpleDateFormat("yy/MM/dd HH:mm:ss");
         try {
             return myFmt.parse(dt);
         } catch (ParseException e) {

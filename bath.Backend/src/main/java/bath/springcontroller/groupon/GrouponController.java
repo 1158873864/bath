@@ -118,4 +118,32 @@ public class GrouponController {
         return new ResponseEntity<>(grouponBlService.getAvailableGroupon(),HttpStatus.OK);
     }
 
+    @ApiOperation(value="管理员通过id上架团购",notes="管理员通过id上架团购")
+    @RequestMapping(value="groupon/putOnShelves",method = POST)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "团购id", required = true, dataType = "String")
+    })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = EventLoadResponse.class),
+            @ApiResponse(code = 403, message = "Unauthorized", response = WrongResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
+    @ResponseBody
+    public ResponseEntity<Response> putOnShelves(@RequestParam(name="id")String id)throws NotExistException{
+        return new ResponseEntity<>(grouponBlService.putOnShelves(id),HttpStatus.OK);
+    }
+
+    @ApiOperation(value="管理员通过id下架团购",notes="管理员通过id下架团购")
+    @RequestMapping(value="groupon/pullOffShelves",method = POST)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "团购id", required = true, dataType = "String")
+    })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = EventLoadResponse.class),
+            @ApiResponse(code = 403, message = "Unauthorized", response = WrongResponse.class),
+            @ApiResponse(code = 500, message = "Failure", response = WrongResponse.class)})
+    @ResponseBody
+    public ResponseEntity<Response> pullOffShelves(@RequestParam(name="id")String id)throws NotExistException{
+        return new ResponseEntity<>(grouponBlService.pullOffShelves(id),HttpStatus.OK);
+    }
+
 }
