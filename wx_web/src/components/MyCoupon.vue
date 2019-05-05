@@ -7,14 +7,12 @@
     <group title="cell demo">
       <cell title="VUX" value="cool" is-link></cell>
     </group>
-    <router-link :to="{name:'MyCoupon'}"> 我的优惠券 </router-link>
-    <router-link :to="{name:'ShopCoupon'}"> 购买优惠券 </router-link>
-
   </div>
 </template>
 
 <script>
 import { Group, Cell } from 'vux'
+
 export default {
   components: {
     Group,

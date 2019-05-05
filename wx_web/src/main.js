@@ -5,13 +5,32 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
 import Home from './components/HelloFromVux'
+import MyCoupon from '@/components/MyCoupon'
+import ShopCoupon from '@/components/ShopCoupon'
+import CouponDetail from '@/components/CouponDetail'
 
 Vue.use(VueRouter)
 
 const routes = [{
   path: '/',
   component: Home
-}]
+},
+{
+  path: '/MyCoupon', // 我的优惠券
+  name: 'MyCoupon',
+  component: MyCoupon
+},
+{
+  path: '/ShopCoupon', // 购买优惠券
+  name: 'ShopCoupon',
+  component: ShopCoupon
+},
+{
+  path: '/CouponDetail', // 优惠券细节
+  name: 'CouponDetail',
+  component: CouponDetail
+}
+]
 
 const router = new VueRouter({
   routes
