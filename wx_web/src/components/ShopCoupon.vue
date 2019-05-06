@@ -88,7 +88,7 @@ export default {
 .listall{
   display: flex;
   /* justify-content: space-between; */
-  height: 150px;
+  /* height: 150px; */
   border: 0.5px solid gray;
 }
 .list_left{
@@ -127,5 +127,6 @@ export default {
 .priceold{
  color:gray;
  text-decoration:line-through;
+ font-weight: 100;
 }
 </style>
