@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import MyCoupon from '@/components/MyCoupon'
 import ShopCoupon from '@/components/ShopCoupon'
 import CouponDetail from '@/components/CouponDetail'
+import MyMembership from '@/components/MyMembership'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/CouponDetail', // 优惠券细节
       name: 'CouponDetail',
       component: CouponDetail
+    },
+    {
+      path:'/MyMembership',
+      name:'MyMembership',
+      component:MyMembership
     }
   ]
 })
