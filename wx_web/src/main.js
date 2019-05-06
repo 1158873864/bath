@@ -10,6 +10,7 @@ import Home from './components/HelloFromVux'
 import MyCoupon from '@/components/MyCoupon'
 import ShopCoupon from '@/components/ShopCoupon'
 import CouponDetail from '@/components/CouponDetail'
+import MyMembership from '@/components/MyMembership'
 
 Vue.use(VueRouter)
 Vue.use(ElementUI);
@@ -32,6 +33,11 @@ const routes = [{
   path: '/CouponDetail', // 优惠券细节
   name: 'CouponDetail',
   component: CouponDetail
+},
+{
+  path:'/MyMembership',
+  name:'MyMembership',
+  component:MyMembership
 }
 ]
 
