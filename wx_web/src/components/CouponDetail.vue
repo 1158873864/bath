@@ -1,38 +1,38 @@
 <template>
   <div>
     <div class="container">
-      <div class="detail" v-for="(item, index) in couponDetail" :key="index">
-      <div class="detailall"> 
-         <div class="detail_top">
-            <div>
-                <img class="image" :src="item.img" alt="">
-            </div>
+      <div class="detail"  >
+         <div class="detail_top">        
+                <img class="image" :src="'https://www.junrongcenter.com/' + couponDetail.image" alt="">       
         </div>
-        
+        <div style="clear:both;"></div>
         <div class="detail_bottom">           
               <div  class="type" >
-                <span>{{item.type}}</span>
+                <span>{{couponDetail.name}}</span>
                 <span class="limit">
                  有效期:
-                 <span style="color:orange">{{item.limit}}</span>
+                 <span style="color:orange">{{dateFormat(couponDetail.loseEffectTime)}}</span>
                  </span>
               </div>
-               <p class="price" >￥{{item.price}}元
-                 <span class="priceold">￥{{item.price}}元</span>
+               <p class="price" >￥{{couponDetail.price}}元
+                 <span class="priceold">￥{{couponDetail.price}}元</span>
                  <Button type="primary" class="more" @click="moreInfo()">更多详情</Button>
                </p>
-               <p class="brief" >{{item.brief}}</p>       
+               <p class="brief" >{{couponDetail.brief}}</p>       
         <div class="money">
           <div class="calute">
-         <button class="mark"  @click="reduce()" >-</button>
+         <span class="mark"  @click="reduce()" >-</span>
         <input  v-on:input="calculate()" type="number" v-model="num" />
-        <button class="mark"   @click="add()" >+</button>
+        <span class="mark"   @click="add()" >+</span>
          </div>
-     
-       <span class="allmoney">
-             <button class="redee">金额</button>
-             <input  style="width:110px;height:25px;background:#EEEEEE" label="金额 " type="number" :value="item.price*num"/>
-       </span>
+         <!-- <template>
+         <el-input-number v-model="num" size="small" @change="handleChange" :min="1"  label="描述文字"></el-input-number>
+         </template> -->
+        <div class="allmoney">
+        <el-input  class="reder" size="small" :value="couponDetail.price*num">
+            <template slot="prepend">金额</template>
+        </el-input>
+       </div>
       </div>
 
       <div>
@@ -65,11 +65,12 @@
 </el-dialog>
 
   </div>
-  </div>
 </template>
 
 <script>
 import { Group, Cell } from 'vux'
+import * as config from '../../config'
+import axios from 'axios'
 
 export default {
   components: {
@@ -80,21 +81,19 @@ export default {
     return {
       num: 1,
       dialogVisible: false,
-      couponDetail: [
-        {
-          id: 0,
-          img: '../static/img/pay-success.png',
-          type: '成人门票',
-          limit: '2019.7.30',
-          brief: '包含12小时成人门票抵用一次！不退不换！',
-          price: '129.00',
-          number: '33'
-        }
-      ]
+      couponDetail: {}
     }
   },
+  created () {
+    console.log(this.$route.query.couponId, 'sddddddddddsdsdsds')
+    this.getDetail()
+  },
   methods: {
-    calculate () {
+    handleChange (value) {
+      console.log(value)
+    },
+    calculate (value) {
+      console.log(value)
     },
     reduce () {
       if (this.num === 1) {
@@ -105,6 +104,28 @@ export default {
     },
     add () {
       this.num++
+    },
+    getDetail () {
+      var couponId = this.$route.query.couponId
+      axios({
+        method: 'post',
+        headers: {
+          'X-Litemall-Admin-Token': sessionStorage.getItem('token')
+        },
+        url: config.baseApi + 'groupon/view?id=' + couponId
+      }).then(response => {
+        console.log(response, 'detaildetail')
+        this.couponDetail = response.data.groupon
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    dateFormat (time) {
+      var date = new Date(time)
+      var year = date.getFullYear()
+      var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+      var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      return year + '-' + month + '-' + day
     },
     moreInfo () {
       this.dialogVisible = true
@@ -120,29 +141,33 @@ export default {
 </script>
 
 <style>
+* { touch-action: pan-y; } 
+.container{  
+ width: 100%;
+ height: 100%;
+ overflow: hidden;
+}
 .detail{
  width: 100%;
+ height: 100%;
+ overflow: hidden;
 }
-.detailall{
- width: 100%;
- height: 100%
-}
-/* .detail_top{
+.detail_top{
  width:100%; 
- height: 100%
+ height:360px
 }
 .image{
-  width:100%;
-  height: 70%
-} */
+ width:100%; 
+ height:360px
+}
 .detail_bottom{
 margin-top:15px;
 font-size: 14px;
-width:100%;
+ width: 95%;
+ overflow: hidden;
 }
 .money{
   display: flex;
-  width:90%;
   margin-top:15px;
   height:35px;
   margin-left: 10px;
@@ -151,27 +176,29 @@ width:100%;
 .limit{
   color:gray;
    position: absolute;
-   right: 2px;
+   right: 0px;
 
 }
 .mark{
-  background:#E6E6E6;
-  height:27px;
+  background:#F5F7FA;
+  height:30px;
   width:34px;
+  border:1px solid #E8E9EF;
 }
 .redee{
   background:#EEEEEE;
   height:27px;
   width:55px;
 }
+.reder{
+  float: right;
+}
 .type{
   color:gray;
   margin-left:10px;
-   width: 92%;
    position: relative;
 }
 .price{
-   width: 92%;
    margin-top:10px;
   font-weight: 600;
   margin-left:12px;
@@ -183,23 +210,22 @@ width:100%;
   font-weight: 100;
 }
 .more{
-  margin-right:10px;
   background:#3175AF;
   border-radius: 6px;
   float: right;
 }
 .calute{
-  float: left;
   display: flex;
   width:50%;
   justify-content: flex-start;
   text-align: center;
 }
 .calute input{
-width: 80px;
-height:25px;
-background:#EEEEEE;
-text-align: center;
+    width: 80px;
+    height:32px;
+    border:1px solid #E8E9EF;
+    background: #ffffff;;
+    text-align: center;
 }
 .brief{
   margin-left:10px;
@@ -207,7 +233,7 @@ text-align: center;
   font-size:14px;
 }
 .pay{
-  width: 90%;
+  width: 95%;
   height: 30px;
   background: #4FA84F;
   margin-left:14px;
@@ -215,11 +241,8 @@ text-align: center;
   border-radius: 5px;
 }
 .allmoney{
-  background:lightgray;
-  height:25px; 
   position:absolute;
   right:0px;
-  display:flex;
-  justify-content: flex-end;
+  width: 50%
 }
 </style>

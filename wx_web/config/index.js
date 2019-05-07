@@ -70,5 +70,6 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
-  }
+  },
+   baseApi: 'https://junrongcenter.com:8080/'
 }
