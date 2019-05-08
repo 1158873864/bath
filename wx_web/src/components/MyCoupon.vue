@@ -9,15 +9,15 @@
     </group>-->
 
     <div class="inputBox">
-      <div style="float:left;">
-      <el-input  v-model="input1">
-        <template slot="prepend">请输入验证码</template>
-        <template slot="append">123456</template>
-      </el-input>
-    </div>
-    <div style="float:left">
-      <el-button type="primary">主要按钮</el-button>
-    </div>
+      <div style="float:left;width:80% ">
+        <el-input v-model="input1">
+          <template slot="prepend">请输入验证码</template>
+          <template slot="append" style="color:red">123456</template>
+        </el-input>
+      </div>
+      <div style="float:left;width:20%">
+        <el-button type="primary" @click="open">点击抢券</el-button>
+      </div>
     </div>
     <div style="clear:both"></div>
     <div class="tab-list">
@@ -32,6 +32,9 @@
 
 <script>
 import { Group, Cell } from "vux";
+import { create } from "domain";
+import axios from "axios";
+import { url } from "inspector";
 
 export default {
   components: {
@@ -39,15 +42,34 @@ export default {
     Cell
   },
   data() {
-    return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
-      
-    };
+    return {};
   },
-  
+  methods: {
+    open() {
+      this.$alert("线上抢券出错：没有可供线上抢券的活动方案", "提示", {
+        confirmButtonText: "关闭",
+        callback: action => {
+          this.$message({
+            type: "info",
+            message: `action: ${action}`
+          });
+        }
+      });
+    }
+  },
+  created() {},
+  mounted() {
+    axios.post({
+      method:'post',
+      url: config.baseApi+'/groupon/view',
+      data:{
+        String:id,
+      },
+    }).then(reg=>{
+      console.log(reg)
+    })
+   
+  }
 };
 </script>
 
@@ -59,29 +81,29 @@ export default {
   width: 100px;
   height: 100px
 } */
-.inputBox{
-  margin: 15px
+.inputBox {
+  width: 100%;
+  margin: 15px;
 }
-.el-input-group{
-  border: 1px solid #DCDFE6;
+.inputBox /deep/ .el-input-group {
+  border: 1px solid #dcdfe6;
 }
-.el-input-group__append{
+.inputBox /deep/ .el-input-group__append {
   border-radius: 0px;
-  color: red
+  color: red;
 }
-.el-button{
+.el-button {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   background-color: green;
   opacity: 0.7;
   height: 42px;
-  
 }
-.el-button:hover{
+.el-button:hover {
   opacity: 0.9;
   background-color: green;
 }
-.tab-list{
- margin: 20px
+.tab-list {
+  margin: 20px;
 }
 </style>

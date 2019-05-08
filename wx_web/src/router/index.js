@@ -5,6 +5,7 @@ import MyCoupon from '@/components/MyCoupon'
 import ShopCoupon from '@/components/ShopCoupon'
 import CouponDetail from '@/components/CouponDetail'
 import MyMembership from '@/components/MyMembership'
+import MemberShipInfo from '@/components/MemberShipInfo'
 
 Vue.use(Router)
 
@@ -31,9 +32,17 @@ export default new Router({
       component: CouponDetail
     },
     {
-      path:'/MyMembership',
+      path:'/MyMembership', //我的会员卡
       name:'MyMembership',
-      component:MyMembership
+      component:MyMembership,
+      children:[
+        {
+        path:'MemberShipInfo',
+        name:'MemberShipInfo',
+        component:MemberShipInfo
+        }
+      ]
+      
     }
   ]
 })

@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+// import VueRouter from './router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import FastClick from 'fastclick'
@@ -11,6 +12,7 @@ import MyCoupon from '@/components/MyCoupon'
 import ShopCoupon from '@/components/ShopCoupon'
 import CouponDetail from '@/components/CouponDetail'
 import MyMembership from '@/components/MyMembership'
+import MemberShipInfo from '@/components/MemberShipInfo'
 
 Vue.use(VueRouter)
 Vue.use(ElementUI);
@@ -37,8 +39,16 @@ const routes = [{
 {
   path:'/MyMembership',
   name:'MyMembership',
-  component:MyMembership
+  component:MyMembership,
+
+},
+{
+  path:'/MemberShipInfo',
+  name:'MemberShipInfo',
+  component:MemberShipInfo
+
 }
+
 ]
 
 const router = new VueRouter({
