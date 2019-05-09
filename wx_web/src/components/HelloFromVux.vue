@@ -71,7 +71,8 @@ footer {
   width: 100%;
   height: 115px;
   position: fixed;
-  bottom: 0px;
+  bottom: -177px;
+  position: relative;
 }
 .youhui,
 .huiyuan {
