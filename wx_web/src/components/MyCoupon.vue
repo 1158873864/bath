@@ -13,6 +13,7 @@
         <el-input>
           <template slot="prepend">请输入验证码</template>
           <template slot="append">123456</template>
+
         </el-input>
       </div>
       <div style="float:left;width:20%">
@@ -32,8 +33,10 @@
 
 <script>
 import { Group, Cell } from "vux";
+
 import axios from "axios";
 import * as config from "../../config";
+
 export default {
   components: {
     Group,
@@ -41,6 +44,7 @@ export default {
   },
   data() {
     return {};
+
   },
   created(){
     this.getMyCoupon();
@@ -74,6 +78,7 @@ export default {
     }
   },
 
+
 };
 </script>
 
@@ -90,6 +95,7 @@ export default {
 .inputBox {
   width: 100%;
   margin: 15px;
+
 }
 .inputBox /deep/ .el-input-group {
   border: 1px solid #dcdfe6;
@@ -113,36 +119,5 @@ export default {
   margin: 20px;
 }
 </style>
-/* .vux-demo {
-  text-align: center;
-}
-.logo {
-  width: 100px;
-  height: 100px
-} */
-.inputBox{
-  margin: 15px
-}
-.el-input-group{
-  border: 1px solid #DCDFE6;
-}
-.el-input-group__append{
-  border-radius: 0px;
-  color: red
-}
-.el-button{
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  background-color: green;
-  opacity: 0.7;
-  height: 42px;
-  
-}
-.el-button:hover{
-  opacity: 0.9;
-  background-color: green;
-}
-.tab-list{
- margin: 20px
-}
-</style>
+
+

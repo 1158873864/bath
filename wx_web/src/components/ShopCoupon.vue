@@ -6,25 +6,25 @@
       <div class="listall"> 
          <div class="list_left">
             <div>
-                <img class="image" :src="'https://www.junrongcenter.com/' + item.image" alt="">
+                <img class="image" :src="item.img" alt="">
             </div>
         </div>
             <div class="list_right">
               
               <p  class="type" >
-                <span>{{item.name}}</span>
-                 <span style="color:gray;float:right;">
+                <span>{{item.type}}</span>
+                 <span style="color:gray;">
                  有效期:
-                 <span style="color:orange">{{dateFormat(item.loseEffectTime)}}</span>
+                 <span style="color:orange">{{item.limit}}</span>
                  </span>
               </p>
-              <p class="brief" >{{item.description}}</p>
+              <p class="brief" >{{item.brief}}</p>
                <p class="price" >￥{{item.price}}元
-                 <span class="priceold">￥{{item.originalPrice}}元</span>
+                 <span class="priceold">￥{{item.price}}元</span>
                </p>
               <p style="color:blue;float:right;">
                  已售：
-                <span class="number">{{item.amount}}&ensp;张</span>
+                <span class="number" v-text="item.number">&emsp;张</span>
               </p>
        </div>   
       </div>      
@@ -36,42 +36,43 @@
 
 <script>
 import { Group, Cell } from 'vux'
-import axios from 'axios'
-import * as config from '../../config'
 
 export default {
-  name: 'couponList',
   components: {
     Group,
     Cell
   },
   data () {
     return {
-      couponList: []
-    }
-  },
-  created () {
-    this.getlist()
-  },
-  methods: {
-    getlist () {
-      axios({
-        method: 'get',
-        url: config.baseApi + '/groupon/ordinary/available',
-        headers: {
-          'X-Litemall-Admin-Token': sessionStorage.getItem('token')
+      couponList: [
+        {
+          id: 0,
+          img: '../static/img/pay-success.png',
+          type: '成人门票',
+          limit: '2019.7.30',
+          brief: '包含12小时成人门票抵用一次！不退不换！',
+          price: '129.00',
+          number: '3924'
+        },
+        {
+          id: 1,
+          img: '../static/img/pay-success.png',
+          type: '特价儿童门票',
+          limit: '2019.7.30',
+          brief: '包含12小时儿童门票抵用一次！不退不换！',
+          price: '59.00',
+          number: '3924'
+        },
+        {
+          id: 2,
+          img: '../static/img/pay-success.png ',
+          type: '特价军人门票',
+          limit: '2019.7.30',
+          brief: '包含12小时成人门票抵用一次！不退不换！',
+          price: '0.00',
+          number: '3924'
         }
-      }).then(result => {
-        console.log(result, 'getlisttlistlis')
-        this.couponList = result.data.groupons
-      })
-    },
-    dateFormat (time) {
-      var date = new Date(time)
-      var year = date.getFullYear()
-      var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
-      var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-      return year + '-' + month + '-' + day
+      ]
     }
   }
 }
@@ -87,7 +88,7 @@ export default {
 .listall{
   display: flex;
   /* justify-content: space-between; */
-  /* height: 150px; */
+  height: 150px;
   border: 0.5px solid gray;
 }
 .list_left{
@@ -126,6 +127,5 @@ export default {
 .priceold{
  color:gray;
  text-decoration:line-through;
- font-weight: 100;
 }
 </style>
