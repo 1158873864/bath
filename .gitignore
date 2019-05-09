@@ -2,3 +2,6 @@
 
 # wechat web node_modules
 /wx_web/node_modules/*
+web/assets/js/coupon-edit.js
+web/assets/js/coupon-edit.js
+web/assets/js/coupon-add.js
