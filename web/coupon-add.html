@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="assets/css/admin.css">
   <script src="assets/js/getUrl.js"></script>
+ 
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -44,13 +45,13 @@
 
       <div class="am-tabs-bd">
 
-        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+        <!-- <div class="am-tab-panel am-fade am-in am-active" id="tab1">
           <div class="am-g am-margin-top">
             <div class="am-u-sm-4 am-u-md-2 am-text-right">优惠券ID</div>
             <div class="am-u-sm-8 am-u-md-10">
               <input id="couponid" name="openid" type="text" value="">
             </div>
-          </div>
+          </div> -->
 
         	 <div class="am-g am-margin-top">
             <div class="am-u-sm-4 am-u-md-2 am-text-right">优惠券名称</div>
@@ -70,60 +71,78 @@
           </form> -->
             
           <div class="am-g am-margin-top">
-            <div class="am-u-sm-4 am-u-md-2 am-text-right">介绍</div>
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">原价</div>
             <div class="am-u-sm-8 am-u-md-10">
-              <input id="brief" name="brief" type="text" value="">
+              <input id="oPrice" name="brief" type="number" value="">
             </div>
           </div>
 
           <div class="am-g am-margin-top">
-            <div class="am-u-sm-4 am-u-md-2 am-text-right">最低消费</div>
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">现价</div>
             <div class="am-u-sm-8 am-u-md-10">
-              <input id="number" name="number" type="text" value="">
+              <input id="price" name="number" type="number" value="">
             </div>
           </div>
 
           <div class="am-g am-margin-top">
-            <div class="am-u-sm-4 am-u-md-2 am-text-right">满减金额</div>
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">生效时间</div>
             <div class="am-u-sm-8 am-u-md-10">
-              <input id="company" name="company" type="text" value="">
+              <input id=" takeEffectTime" name="company" type="text" value="">
             </div>
           </div>
 
           <div class="am-g am-margin-top">
-            <div class="am-u-sm-4 am-u-md-2 am-text-right">每人限领</div>
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">失效时间</div>
             <div class="am-u-sm-8 am-u-md-10">
-              <input id="department" name="department" type="text" value="">
+              <input id="loseEffectTime" name="department" type="text" value="">
             </div>
           </div>
 
           <div class="am-g am-margin-top">
-            <div class="am-u-sm-4 am-u-md-2 am-text-right">商品使用范围</div>
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">上架时间</div>
             <div class="am-u-sm-8 am-u-md-10">
-              <input id="position" name="position" type="text" value="">
+              <input id="putOnShelvesTime" name="position" type="text" value="">
             </div>
           </div>
 
           <div class="am-g am-margin-top">
-            <div class="am-u-sm-4 am-u-md-2 am-text-right">优惠券类型</div>
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">下架时间</div>
             <div class="am-u-sm-8 am-u-md-10">
-              <input id="intro" name="intro" type="text" value="">
+              <input id="pullOffShelvesTime" name="intro" type="text" value="">
             </div>
           </div>
 
           <div class="am-g am-margin-top">
-            <div class="am-u-sm-4 am-u-md-2 am-text-right">优惠券数量</div>
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">描述</div>
             <div class="am-u-sm-8 am-u-md-10">
-              <input id="city" name="city" type="text" value="">
+              <input id="description" name="miaoshu" type="text" value="">
             </div>
           </div>
 
           <div class="am-g am-margin-top">
-            <div class="am-u-sm-4 am-u-md-2 am-text-right">状态</div>
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">数量</div>
             <div class="am-u-sm-8 am-u-md-10">
-            	<select id="is">
-            		<option>已使用</option>
-            		<option>未使用</option>
+              <input id="amount" name="city" type="number" value="">
+            </div>
+          </div>
+
+          <!-- <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">团购类型</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <select name="" id="">
+                <option id='groupBuy' value="">普通团购</option>
+                <option id='credits' value="">积分兑换</option>
+              </select>
+              <input id="groupType" name="miaoshu" type="text" value="">
+            </div>
+          </div> -->
+
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">团购类型</div>
+            <div class="am-u-sm-8 am-u-md-10">
+            	<select id="type">
+            		<option id='groupBuy' value="ORDINARY">普通团购</option>
+            		<option id='credits' value="INTEGRAL">积分兑换</option>
             	</select>
             </div>
           </div>
@@ -135,7 +154,7 @@
       </div>
     </div>
       <div class="am-margin">
-          <button id="addbutton" onclick="adduser()" type="button" class="am-btn am-btn-primary am-btn-xs"style="background-color: #22cc77; margin-left: 20%;margin-bottom: 20%;">确定</button>
+          <button id="addbutton" onclick="ocConfirm" type="button" class="am-btn am-btn-primary am-btn-xs"style="background-color: #22cc77; margin-left: 20%;margin-bottom: 20%;">确定</button>
       </div>
 
   </div>
@@ -174,11 +193,12 @@
 
 
 </script>
-<script>
+<!-- <script>
     var storage = window.localStorage;
     if(storage["has"]!="yes"){
         window.location.href="login.html";
     }
-</script>
+
+</script> -->
 </body>
 </html>

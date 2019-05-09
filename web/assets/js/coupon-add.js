@@ -53,6 +53,8 @@ $.ajax(
 )
 
 
+
+
 function checkRate(input) {
     var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
     var nubmer = document.getElementById(input).value;
@@ -129,4 +131,35 @@ function adduser() {
             }
         });
     }
+}
+
+//添加优惠券接口
+function ocConfirm(){
+   $.ajax({
+       url: url+'/groupon/add',
+       type:'post',
+       data:{
+        name: $('#couponname').val(),
+        originalPrice: $('#oPrice').val(),
+        price: $('#price').val(),
+        takeEffectTime:$('#takeEffectTime').val(),
+        loseEffectTime: $('#loseEffectTime').val(),
+        putOnShelvesTime: $('#putOnShelvesTime').val(),
+        pullOffShelvesTime:$('#pullOffShelvesTime').val(),
+        description:$('#description').val(),
+        amount:$('#amount').val(),
+        type:$('#type').val(),
+
+       },
+       async: false,
+       success: function (data) {
+           alert("添加成功");
+           console.log(data,'2222')
+        //    window.location.href = "vip-list.html";
+       },
+       error: function (xhr) {
+           //alert('动态页有问题噶！\n\n' + xhr.responseText);
+       },
+       traditional: true,
+   })
 }

@@ -9,7 +9,9 @@
       </el-input>
     </div>
     <div class="btnBox">
+      <router-link to='/MemberShipInfo'>
         <el-button type="primary" class="btn">绑定实体卡</el-button>
+      </router-link>
         <el-button type="primary" class="btn">在线购卡</el-button>
     </div>
   </div>

@@ -11,6 +11,7 @@ import MyCoupon from '@/components/MyCoupon'
 import ShopCoupon from '@/components/ShopCoupon'
 import CouponDetail from '@/components/CouponDetail'
 import MyMembership from '@/components/MyMembership'
+import MemberShipInfo from '@/components/MemberShipInfo'
 import axios from 'axios'
 
 Vue.use(VueRouter)
@@ -47,6 +48,12 @@ const routes = [{
   path: '/MyMembership',
   name: 'MyMembership',
   component: MyMembership
+},
+{
+  path:'/MemberShipInfo',
+  name:'MemberShipInfo',
+  component:MemberShipInfo
+
 }
 ]
 
