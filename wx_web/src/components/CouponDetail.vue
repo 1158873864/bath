@@ -42,22 +42,24 @@
       </div>      
     </div>
   
-   <el-dialog title="成人门票更多详情" :visible.sync="dialogVisible"  width="90%" v-show="dialogVisible">
-   <p>使用须知：
+    <el-dialog  class="boom" :title="visibleDetail.name" :visible.sync="dialogVisible"  v-show="dialogVisible">
+   <span >使用须知：
     此券包含：洗浴、汗蒸、高档海鲜美食自助、儿童嬉水、儿童乐园、各种时令水果、4D影院、VIP专属休息区、健身、网咖、WIFI、休闲娱乐
-   </p>
+     </span>
+    <p>
+      温馨提示：此券{{dateFormatr(visibleDetail.takeEffectTime)}} 至 {{dateFormatr(visibleDetail.loseEffectTime)}}，不额外赠送足疗或者双人助浴
+    </p>
     <span>
-    温馨提示：此券2019年1月26日至2019年2月11日，不额外赠送足疗或者双人助浴
-    每人每次限使用1张。
-    此券不兑换现金、不找零；
-    此券不与其他优惠同时使用；
-    此券请在有效期内使用，过期作废；
-    此券法定节假日及周末不可使用；
-    御池宫汤泉主题酒店对此券拥有法律许可的最终解释权
-    地址：南京市浦口区浦口大道11号明发新城中心2幢3单元
-    御池宫服务热线：025-58659999或18068838855
-     扬州中天管理免费热线：400-828-7676</span>
- 
+        每人每次限使用1张。<br> 
+    此券不兑换现金、不找零；<br>
+    此券不与其他优惠同时使用；<br>
+    此券请在有效期内使用，过期作废；<br>
+    此券法定节假日及周末不可使用；<br>
+    御池宫汤泉主题酒店对此券拥有法律许可的最终解释权<br>
+    地址：南京市浦口区浦口大道11号明发新城中心2幢3单元<br>
+    御池宫服务热线：025-58659999或18068838855<br>
+    扬州中天管理免费热线：400-828-7676</span>
+  
   <span slot="footer" class="dialog-footer">
     <el-button type="primary" @click="infoClose()">关闭</el-button>
   </span>
@@ -80,6 +82,7 @@ export default {
   data () {
     return {
       num: 1,
+      visibleDetail: {},
       dialogVisible: false,
       couponDetail: {}
     }
@@ -127,8 +130,28 @@ export default {
       var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
       return year + '-' + month + '-' + day
     },
+   dateFormatr (time) {
+      var date = new Date(time)
+      var year = date.getFullYear()
+      var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
+      var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+      return year + '年' + month + '月' + day + '日'
+    },
     moreInfo () {
       this.dialogVisible = true
+            var couponId = this.$route.query.couponId
+      axios({
+        method: 'post',
+        headers: {
+          'X-Litemall-Admin-Token': sessionStorage.getItem('token')
+        },
+        url: config.baseApi + 'groupon/view?id=' + couponId
+      }).then(response => {
+        console.log(response, 'visibledetaildetail')
+        this.visibleDetail = response.data.groupon
+      }).catch(error => {
+        console.log(error)
+      })
     },
     infoClose () {
       this.dialogVisible = false
@@ -160,6 +183,25 @@ export default {
  width:100%; 
  height:360px
 }
+ .el-dialog{
+  width:90%;
+}
+.el-dialog__title{
+  line-height: 24px;
+   font-size: 16px;
+    color: #303133;
+}
+.el-dialog__header{
+  border:0.5px solid #E5E5E5;
+}
+.el-dialog__body{
+  padding-top:12px;
+  border:0.5px solid  #E5E5E5;
+  font-size: 14px;
+  color:black;
+  
+}
+
 .detail_bottom{
 margin-top:15px;
 font-size: 14px;

@@ -6,7 +6,8 @@
       <div class="listall"> 
          <div class="list_left">
             <div>
-                <img class="image" :src="'https://www.junrongcenter.com/' + item.image" alt="">
+               <img class="image"  :src="'https://www.junrongcenter.com/' + item.image" style="width: 100%;
+                height: 134px;" alt="">
             </div>
         </div>
             <div class="list_right">
@@ -87,7 +88,7 @@ export default {
 .listall{
   display: flex;
   /* justify-content: space-between; */
-  /* height: 150px; */
+  height: 150px;
   border: 0.5px solid gray;
 }
 .list_left{

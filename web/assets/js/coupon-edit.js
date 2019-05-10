@@ -1,58 +1,83 @@
 var list=new Array();
 var url=getUrl();
-$.ajax(
-    {
-        url: url+"/getLevelList",
-        data: {
-        },
-        async:false,
-        success: function (data) {
-            for(var i=0;i<data.levels.length;i++){
-                list.push(data.levels[i]);
-            }
-            for(var i=0;i<list.length;i++){
-                $("#levelName").append("<option value=''>"+list[i].name+"</option>");
-            }
-        },
-        error: function (xhr) {
-            alert('动态页有问题噶！\n\n' + xhr.responseText);
-        },
-        traditional: true,
-    }
-)
+// $.ajax(
+//     {
+//         url: url+"/getLevelList",
+//         data: {
+//         },
+//         async:false,
+//         success: function (data) {
+//             for(var i=0;i<data.levels.length;i++){
+//                 list.push(data.levels[i]);
+//             }
+//             for(var i=0;i<list.length;i++){
+//                 $("#levelName").append("<option value=''>"+list[i].name+"</option>");
+//             }
+//         },
+//         error: function (xhr) {
+//             alert('动态页有问题噶！\n\n' + xhr.responseText);
+//         },
+//         traditional: true,
+//     }
+// )
 
 list=new Array();
-$.ajax(
-    {
-        url: url+"/getClassificationList",
-        data: {
-        },
-        async:false,
-        success: function (data) {
-            for(var i=0;i<data.classifications.length;i++){
-                if(data.classifications[i].workClass=="capital"){
-                    data.classifications[i].workClass="金融类";
-                }
-                else if(data.classifications[i].workClass=="stock"){
-                    data.classifications[i].workClass="股票类";
-                }
-                else if(data.classifications[i].workClass=="merge"){
-                    data.classifications[i].workClass="并购类";
-                }
-                list.push(data.classifications[i]);
-            }
-            for(var i=0;i<list.length;i++){
-                $("#label").append("<option value=''>"+list[i].userLabel+"</option>");
-            }
-        },
-        error: function (xhr) {
-            alert('动态页有问题噶！\n\n' + xhr.responseText);
-        },
-        traditional: true,
-    }
-)
+// $.ajax(
+//     {
+//         url: url+"/getClassificationList",
+//         data: {
+//         },
+//         async:false,
+//         success: function (data) {
+//             for(var i=0;i<data.classifications.length;i++){
+//                 if(data.classifications[i].workClass=="capital"){
+//                     data.classifications[i].workClass="金融类";
+//                 }
+//                 else if(data.classifications[i].workClass=="stock"){
+//                     data.classifications[i].workClass="股票类";
+//                 }
+//                 else if(data.classifications[i].workClass=="merge"){
+//                     data.classifications[i].workClass="并购类";
+//                 }
+//                 list.push(data.classifications[i]);
+//             }
+//             for(var i=0;i<list.length;i++){
+//                 $("#label").append("<option value=''>"+list[i].userLabel+"</option>");
+//             }
+//         },
+//         error: function (xhr) {
+//             alert('动态页有问题噶！\n\n' + xhr.responseText);
+//         },
+//         traditional: true,
+//     }
+// )
 
-
+// $(function () {
+//     var action = getUrlParam('id');
+  
+   
+// });
+// function getUrlParam(name) {//a标签跳转获取参数
+//     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+//     var r = window.location.search.substr(1).match(reg);
+//     console.log(r[2],88888888888)
+//     if (r != null){
+//         $.ajax({
+//             type:'get',
+//             url:url+'/groupon/ordinary?id=r[2]',
+//             data:{
+//                 id:r[2]
+//             },
+//             async: false,
+//             success: function (data) {
+                
+//                 console.log(data,'2222')
+//             }
+//         })
+//     } 
+    
+    
+// }
 function checkRate(input) {
     var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
     var nubmer = document.getElementById(input).value;
@@ -94,6 +119,7 @@ function adduser() {
                     {
                         url: url + "/addUser",
                         data: {
+                            id,
                             openid: $("#openid").val(),
                             username: $("#username").val(),
                             phone: $("#phone").val(),
@@ -129,4 +155,36 @@ function adduser() {
             }
         });
     }
+}
+//修改优惠券
+function updateCoupon(){
+   $.ajax({
+       url: url+ '/groupon/update ',
+       type:'post',
+       data:{
+        id:q.id,
+        name: $('#couponname').val(),
+        originalPrice: $('#oPrice').val(),
+        price: $('#price').val(),
+        takeEffectTime:$('#takeEffectTime').val(),
+        loseEffectTime: $('#loseEffectTime').val(),
+        putOnShelvesTime: $('#putOnShelvesTime').val(),
+        pullOffShelvesTime:$('#pullOffShelvesTime').val(),
+        description:$('#description').val(),
+        amount:$('#amount').val(),
+        type:$('#type').val(),
+        image:$('fupPhoto').val,
+
+       },
+       async: false,
+       success: function (data) {
+           alert("修改成功");
+           console.log(data,'2222')
+        //    window.location.href = "vip-list.html";
+       },
+       error: function (xhr) {
+           //alert('动态页有问题噶！\n\n' + xhr.responseText);
+       },
+       traditional: true,
+   })
 }

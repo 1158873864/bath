@@ -1,56 +1,56 @@
 var list=new Array();
 var url=getUrl();
-$.ajax(
-    {
-        url: url+"/getLevelList",
-        data: {
-        },
-        async:false,
-        success: function (data) {
-            for(var i=0;i<data.levels.length;i++){
-                list.push(data.levels[i]);
-            }
-            for(var i=0;i<list.length;i++){
-                $("#levelName").append("<option value=''>"+list[i].name+"</option>");
-            }
-        },
-        error: function (xhr) {
-            alert('动态页有问题噶！\n\n' + xhr.responseText);
-        },
-        traditional: true,
-    }
-)
+// $.ajax(
+//     {
+//         url: url+"/getLevelList",
+//         data: {
+//         },
+//         async:false,
+//         success: function (data) {
+//             for(var i=0;i<data.levels.length;i++){
+//                 list.push(data.levels[i]);
+//             }
+//             for(var i=0;i<list.length;i++){
+//                 $("#levelName").append("<option value=''>"+list[i].name+"</option>");
+//             }
+//         },
+//         error: function (xhr) {
+//             alert('动态页有问题噶！\n\n' + xhr.responseText);
+//         },
+//         traditional: true,
+//     }
+// )
 
 list=new Array();
-$.ajax(
-    {
-        url: url+"/getClassificationList",
-        data: {
-        },
-        async:false,
-        success: function (data) {
-            for(var i=0;i<data.classifications.length;i++){
-                if(data.classifications[i].workClass=="capital"){
-                    data.classifications[i].workClass="金融类";
-                }
-                else if(data.classifications[i].workClass=="stock"){
-                    data.classifications[i].workClass="股票类";
-                }
-                else if(data.classifications[i].workClass=="merge"){
-                    data.classifications[i].workClass="并购类";
-                }
-                list.push(data.classifications[i]);
-            }
-            for(var i=0;i<list.length;i++){
-                $("#label").append("<option value=''>"+list[i].userLabel+"</option>");
-            }
-        },
-        error: function (xhr) {
-            alert('动态页有问题噶！\n\n' + xhr.responseText);
-        },
-        traditional: true,
-    }
-)
+// $.ajax(
+//     {
+//         url: url+"/getClassificationList",
+//         data: {
+//         },
+//         async:false,
+//         success: function (data) {
+//             for(var i=0;i<data.classifications.length;i++){
+//                 if(data.classifications[i].workClass=="capital"){
+//                     data.classifications[i].workClass="金融类";
+//                 }
+//                 else if(data.classifications[i].workClass=="stock"){
+//                     data.classifications[i].workClass="股票类";
+//                 }
+//                 else if(data.classifications[i].workClass=="merge"){
+//                     data.classifications[i].workClass="并购类";
+//                 }
+//                 list.push(data.classifications[i]);
+//             }
+//             for(var i=0;i<list.length;i++){
+//                 $("#label").append("<option value=''>"+list[i].userLabel+"</option>");
+//             }
+//         },
+//         error: function (xhr) {
+//             alert('动态页有问题噶！\n\n' + xhr.responseText);
+//         },
+//         traditional: true,
+//     }
+// )
 
 
 
@@ -135,6 +135,7 @@ function adduser() {
 
 //添加优惠券接口
 function ocConfirm(){
+    console.log($('#takeEffectTime').val(),1111,)
    $.ajax({
        url: url+'/groupon/add',
        type:'post',
@@ -149,6 +150,7 @@ function ocConfirm(){
         description:$('#description').val(),
         amount:$('#amount').val(),
         type:$('#type').val(),
+        image:$('fupPhoto').val,
 
        },
        async: false,
