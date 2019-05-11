@@ -40,8 +40,8 @@
             <div class="am-u-sm-12 am-u-md-6">
                 <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                         <!-- <button type="button" id="checkall"class="am-btn am-btn-default"><span class="icon-check"></span> 全选</button>
-                        <button type="button" class="am-btn am-btn-default" onclick="delAll()"><span class="am-icon-trash-o"></span> 删除</button> -->
+                        <button type="button" id="checkall"class="am-btn am-btn-default"><span class="icon-check"></span> 全选</button>
+                        <button type="button" class="am-btn am-btn-default" onclick="delAll()"><span class="am-icon-trash-o"></span> 删除</button>
                         <button type="button" class="am-btn am-btn-default">   <a href="coupon-add.html"><span class="am-icon-plus"></span> 添加优惠券</a></button>
 
                     </div>
@@ -73,7 +73,7 @@
                     <table class="am-table am-table-striped am-table-hover table-main" >
                         <thead>
                         </thead><tr>
-                        <!-- <th><input type="checkbox" name="id[]"/></th> -->
+                        <th><input type="checkbox" name="id[]"/></th>
                         <th>优惠券ID</th>
                         <th>优惠券名称</th>
                         <th>图片</th>
@@ -83,11 +83,11 @@
                         <th>失效期</th>
                         <th>价格</th>
                         <th>原价</th>
-                        <th>已售</th>                    
+                        <th>已售</th>         
                         <th class="table-set">操作</th>
                     </tr>
                         <tr id="your-alert-1">
-                            <!-- <td><input id="c1" type="checkbox" name="id[]"/></td> -->
+                            <td><input id="c1" type="checkbox" name="id[]"/></td>
                             <td id="id1"></td>
                             <td id="name1"></td>
                             <td id="image1" ></td>
@@ -101,21 +101,17 @@
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                      <!-- <a href="coupon-eye.html" onclick="setthisquestion(0)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a> -->
-                                      <a href="coupon-edit.html" onclick="setthisquestion(0)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改000</a> 
-                                      <!-- <button onclick="setthisquestion(1)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span> 修改1</button> -->
-
-                                      <!-- <button type="button" class="am-icon-edit" id="doc-alert-btn-close1" onclick="setthisquestion(1)"><span class="am-icon-trash-o"></span>test</button> -->
-
-                                      <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close1" onclick="deletequestion(0)"><span class="am-icon-trash-o"></span>删除</button>
+                                        <a href="coupon-eye.html" onclick="setthisquestion(0)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a>
+                                        <a href="coupon-edit.html" onclick="setthisquestion(0)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
+                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close1" onclick="deletequestion(0)"><span class="am-icon-trash-o"></span>删除</button>
 
                                     </div>
                                 </div>
                             </td>
                         </tr>
                         <tr id="your-alert-2">
-                             <!-- <td><input id="c2" type="checkbox" name="id[]"/></td> -->
-                             <td id="id2"></td>
+                            <td><input id="c2" type="checkbox" name="id[]"/></td>
+                            <td id="id2"></td>
                             <td id="name2"></td>
                             <td id="image2"></td>
                             <td id="description2"></td>
@@ -128,9 +124,8 @@
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                        <!-- <a href="coupon-eye.html" onclick="setthisquestion(1)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a> -->
-                                        <a href="coupon-edit.html?id=id2" onclick="setthisquestion(1)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span> 修改2</a>
-                                        <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close2" onclick="setthisquestion(1)"><span class="am-icon-trash-o"></span>修改2-2222</button>
+                                        <a href="coupon-eye.html" onclick="setthisquestion(1)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a>
+                                        <a href="coupon-edit.html" onclick="setthisquestion(1)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
 
                                         <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close2" onclick="deletequestion(1)"><span class="am-icon-trash-o"></span>删除</button>
 
@@ -139,8 +134,8 @@
                             </td>
                         </tr>
                         <tr id="your-alert-3">
-                             <!-- <td><input id="c3" type="checkbox" name="id[]"/></td> -->
-                             <td id="id3"></td>
+                            <td><input id="c3" type="checkbox" name="id[]"/></td>
+                            <td id="id3"></td>
                             <td id="name3"></td>
                             <td id="image3"></td>
                             <td id="description3"></td>
@@ -153,8 +148,8 @@
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                        <!-- <a href="coupon-eye.html" onclick="setthisquestion(2)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a> -->
-                                        <a href="coupon-edit.html?id=id3" onclick="setthisquestion(2)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改99</a>
+                                        <a href="coupon-eye.html" onclick="setthisquestion(2)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a>
+                                        <a href="coupon-edit.html" onclick="setthisquestion(2)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
 
                                         <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close3" onclick="deletequestion(2)"><span class="am-icon-trash-o"></span>删除</button>
 
@@ -163,7 +158,7 @@
                             </td>
                         </tr>
                         <tr id="your-alert-4">
-                                  <!-- <td><input id="c4" type="checkbox" name="id[]"/></td> -->
+                            <td><input id="c4" type="checkbox" name="id[]"/></td>
                             <td id="id4"></td>
                             <td id="name4"></td>
                             <td id="image4"></td>
@@ -177,8 +172,8 @@
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                        <!-- <a href="coupon-eye.html" onclick="setthisquestion(3)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a> -->
-                                        <a href="coupon-edit.html" onclick="setthisquestion(3)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改74</a>
+                                        <a href="coupon-eye.html" onclick="setthisquestion(3)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a>
+                                        <a href="coupon-edit.html" onclick="setthisquestion(3)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
 
                                         <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close4" onclick="deletequestion(3)"><span class="am-icon-trash-o"></span>删除</button>
 
@@ -187,7 +182,7 @@
                             </td>
                         </tr>
                         <tr id="your-alert-5">
-                            <!-- <td><input id="c5" type="checkbox" name="id[]"/></td> -->
+                            <td><input id="c5" type="checkbox" name="id[]"/></td>
                             <td id="id5"></td>
                             <td id="name5"></td>
                             <td id="image5"></td>
@@ -201,9 +196,8 @@
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                        <!-- <a href="coupon-eye.html" onclick="setthisquestion(4)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a> -->
-                                        <!--<a href="coupon-edit.html" onclick="setthisquestion(4)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a> -->
-                                        <span   onclick="setthisquestion(4)" class="am-icon-edit"></span>  修改888
+                                        <a href="coupon-eye.html" onclick="setthisquestion(4)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-eye"></span>  查看详情</a>
+                                        <a href="coupon-edit.html" onclick="setthisquestion(4)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-edit"></span>  修改</a>
 
                                         <button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" id="doc-alert-btn-close5" onclick="deletequestion(4)"><span class="am-icon-trash-o"></span>删除</button>
 
@@ -306,13 +300,11 @@
 </script>
 <script src="assets/js/getUrl.js"></script>
 <script src="./assets/js/coupon.js"></script>
-<script src="./assets/js/coupon-edit.js"></script>
-<!-- <script>
+<script>
     var storage = window.localStorage;
     if(storage["has"]!="yes"){
         window.location.href="login.html";
     }
-</script> -->
-
+</script>
 </body>
 </html>

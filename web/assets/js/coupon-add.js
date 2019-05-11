@@ -157,7 +157,7 @@ function ocConfirm(){
        success: function (data) {
            alert("添加成功");
            console.log(data,'2222')
-        //    window.location.href = "vip-list.html";
+           window.location.href = "coupon.html";
        },
        error: function (xhr) {
            //alert('动态页有问题噶！\n\n' + xhr.responseText);

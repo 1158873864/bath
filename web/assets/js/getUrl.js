@@ -5,8 +5,8 @@ function getUrl() {
     return address;
 }
 
-function getToken(){
-    var storage = window.localStorage;
-    var token=storage["token"];
-    return token;
-}
+// function getToken(){
+//     var storage = window.localStorage;
+//     var token=storage["token"];
+//     return token;
+// }

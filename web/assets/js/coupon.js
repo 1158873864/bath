@@ -20,10 +20,12 @@ $.ajax(
         },
         async:false,
         success: function (data) {
-            console.log(data,'couponlistaaaaaaaa')
+            //console.log(data,'couponlistaaaaaaaa')
             for(var i=0;i<data.groupons.length;i++){
                 list.push(data.groupons[i]);
+                
             }
+            console.log(list,"listlistlisr")
             document.getElementById("jilu").innerText="共"+(list.length)+"条记录";
             changepage(1);
         },
@@ -35,40 +37,12 @@ $.ajax(
 )
 
 function setthisquestion(n){
-    console.log(n,'11111打印')
     var q=list[firstID+n];
     var storage = window.localStorage;
-    storage["thisCoupon"]=q.id;
-    var url = getUrl();
-    // window.location.href="/coupon-edit.html";
-    // this.ajax({
-    //     type:'get',
-    //     url:url+'/groupon/ordinary?id='+q.id,
-    //     async: false,
-    //     success: function (data) {
-    //         console.log(data,"shenemme")
-
-    //     }
-    // })
+    storage["thisUser"]=q.openid;
 }
-function formatDate(value) {
-    var ss = Date.parse(value);
-      var date = new Date(ss);  
-            var y = date.getFullYear();    
-            var m = date.getMonth() + 1;    
-            m = m < 10 ? ('0' + m) : m;    
-            var d = date.getDate();    
-            d = d < 10 ? ('0' + d) : d;    
-            var h = date.getHours();  
-            h = h < 10 ? ('0' + h) : h;  
-            var minute = date.getMinutes();  
-            var second = date.getSeconds();  
-            minute = minute < 10 ? ('0' + minute) : minute;    
-            second = second < 10 ? ('0' + second) : second;   
-            return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;    
-}
-
 function deletequestion(n){
+    console.log(list,"ffddfdfdf")
     var r=confirm("确定删除么？");
     if(r) {
         var q = list[firstID + n];
@@ -77,9 +51,6 @@ function deletequestion(n){
             {
                 type: 'POST',
                 url: url + "/groupon/delete?id=" +q.id,
-                // data:{
-                //     id: q.id
-                // },
                 async: false,
                 success: function (data) {
                     alert("删除成功");
@@ -109,15 +80,12 @@ function changegroup(to){
     }
     else{
         theGroup=theGroup+1;
-
     }
     document.getElementById("page1").innerText=theGroup*5+1;
     document.getElementById("page2").innerText=theGroup*5+2;
     document.getElementById("page3").innerText=theGroup*5+3;
     document.getElementById("page4").innerText=theGroup*5+4;
     document.getElementById("page5").innerText=theGroup*5+5;
-
-
     changepage(1);
 }
 function changepage(page){
@@ -154,9 +122,11 @@ function changepage(page){
         $("#your-alert-1").show();
         document.getElementById("id"+(firstID%5+1)).innerText=list[firstID].id;
         document.getElementById("name"+(firstID%5+1)).innerText=list[firstID].name;
+        
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID].image;
         document.getElementById("image"+(firstID%5+1)).appendChild(img);
+       
         document.getElementById("description"+(firstID%5+1)).innerText=list[firstID].description;
         document.getElementById("type"+(firstID%5+1)).innerText=list[firstID].type;
         document.getElementById("takeEffectTime"+(firstID%5+1)).innerText=formatDate(list[firstID].takeEffectTime);
@@ -266,7 +236,9 @@ function changepage(page){
         document.getElementById("image"+(firstID%5+1)).appendChild(img);
         document.getElementById("description"+(firstID%5+1)).innerText=list[firstID].description;
         document.getElementById("type"+(firstID%5+1)).innerText=list[firstID].type;
+        
         document.getElementById("takeEffectTime"+(firstID%5+1)).innerText=formatDate(list[firstID].takeEffectTime);
+        console.log(list[firstID].takeEffectTime,'sssssss',formatDate(list[firstID].takeEffectTime))
         document.getElementById("loseEffectTime"+(firstID%5+1)).innerText=formatDate(list[firstID].loseEffectTime);
         document.getElementById("price"+(firstID%5+1)).innerText=list[firstID].price;
         document.getElementById("originalPrice"+(firstID%5+1)).innerText=list[firstID].originalPrice;
@@ -307,6 +279,7 @@ function changepage(page){
         document.getElementById("type"+(firstID%5+4)).innerText=list[firstID+3].type;
         document.getElementById("takeEffectTime"+(firstID%5+4)).innerText=formatDate(list[firstID+3].takeEffectTime);
         document.getElementById("loseEffectTime"+(firstID%5+4)).innerText=formatDate(list[firstID+3].loseEffectTime);
+        console.log(list[firstID+3].takeEffectTime,'saaaaaaaa',formatDate(list[firstID+3].takeEffectTime))
         document.getElementById("price"+(firstID%5+4)).innerText=list[firstID+3].price;
         document.getElementById("originalPrice"+(firstID%5+4)).innerText=list[firstID+3].originalPrice;
         document.getElementById("amount"+(firstID%5+4)).innerText=list[firstID+3].amount;
@@ -384,7 +357,6 @@ function changepage(page){
         document.getElementById("amount"+(firstID%5+5)).innerText=list[firstID+4].amount;
     }
 
-
 }
 
 function deletesingle(n){
@@ -421,10 +393,26 @@ function delAll(){
     if(document.getElementById("c5").checked){
         deletesingle(5);
     }
+    alert("批量删除成功");
     window.location.href="coupon.html";
 
 }
-
+function formatDate(value) {
+    var ss = Date.parse(value);
+      var date = new Date(ss);  
+            var y = date.getFullYear();    
+            var m = date.getMonth() + 1;    
+            m = m < 10 ? ('0' + m) : m;    
+            var d = date.getDate();    
+            d = d < 10 ? ('0' + d) : d;    
+            var h = date.getHours();  
+            h = h < 10 ? ('0' + h) : h;  
+            var minute = date.getMinutes();  
+            var second = date.getSeconds();  
+            minute = minute < 10 ? ('0' + minute) : minute;    
+            second = second < 10 ? ('0' + second) : second;   
+            return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;    
+}
 function search(){
     var text=$("#con").val();
     for(var i=0;i<list.length;i++){
