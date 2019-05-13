@@ -1,27 +1,40 @@
 var list=new Array();
 var url=getUrl();
-// $.ajax(
-//     {
-//         url: url+"/getLevelList",
-//         data: {
-//         },
-//         async:false,
-//         success: function (data) {
-//             for(var i=0;i<data.levels.length;i++){
-//                 list.push(data.levels[i]);
-//             }
-//             for(var i=0;i<list.length;i++){
-//                 $("#levelName").append("<option value=''>"+list[i].name+"</option>");
-//             }
-//         },
-//         error: function (xhr) {
-//             alert('动态页有问题噶！\n\n' + xhr.responseText);
-//         },
-//         traditional: true,
-//     }
-// )
-
 list=new Array();
+var coupouId='';
+window.onload=function(){ 
+    var storage = window.localStorage;
+    coupouId = storage.getItem("thisCoupon")
+    console.log( coupouId,'55555555',storage,storage.getItem("thisCoupon"))
+    this.getEdit();
+    // 初始化内容 
+}
+
+function getEdit(){
+    $.ajax(
+    {
+        url: url+"/coupon/view",
+        method:'post',
+        data: {
+            id :coupouId
+        },
+        async:true,
+        success: function (data) {
+          /*  for(var i=0;i<data.levels.length;i++){
+                list.push(data.levels[i]);
+            }
+            for(var i=0;i<list.length;i++){
+                $("#levelName").append("<option value=''>"+list[i].name+"</option>");
+            }*/
+        },
+        error: function (xhr) {
+            alert('动态页有问题噶！\n\n' + xhr.responseText);
+        },
+        traditional: true,
+    }
+)
+
+}
 // $.ajax(
 //     {
 //         url: url+"/getClassificationList",
@@ -158,11 +171,12 @@ function adduser() {
 }
 //修改优惠券
 function updateCoupon(){
+    alert('修改')
    $.ajax({
        url: url+ '/groupon/update ',
        type:'post',
        data:{
-        id:q.id,
+        id,
         name: $('#couponname').val(),
         originalPrice: $('#oPrice').val(),
         price: $('#price').val(),
@@ -173,7 +187,7 @@ function updateCoupon(){
         description:$('#description').val(),
         amount:$('#amount').val(),
         type:$('#type').val(),
-        image:$('fupPhoto').val,
+        image:$('#fupPhoto').val(),
 
        },
        async: false,

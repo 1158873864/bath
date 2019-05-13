@@ -12,37 +12,58 @@ var list=new Array();
 var firstID=0;
 var theGroup=0;
 var url=getUrl();
-$.ajax(
-    {
-        // 查看所有优惠券列表
-        url: url+"/groupon/ordinary",
-        data: {
-        },
-        async:false,
-        success: function (data) {
-            //console.log(data,'couponlistaaaaaaaa')
-            for(var i=0;i<data.groupons.length;i++){
-                list.push(data.groupons[i]);
-                
-            }
-            console.log(list,"listlistlisr")
-            document.getElementById("jilu").innerText="共"+(list.length)+"条记录";
-            changepage(1);
-        },
-        error: function (xhr) {
-            alert('动态页有问题噶！\n\n' + xhr.responseText);
-        },
-        traditional: true,
-    }
-)
+window.onload=function(){ 
+ this.getCouponList(list);
+}
+function getCouponList(list){
 
-function setthisquestion(n){
+   if(list.length==0){
+    $.ajax(
+        {
+            // 查看所有优惠券列表
+            url: url+"/groupon/ordinary",
+            data: {
+            },
+            async:false,
+            success: function (data) {
+                //console.log(data,'couponlistaaaaaaaa')
+                for(var i=0;i<data.groupons.length;i++){
+                    list.push(data.groupons[i]);
+                    
+                }
+                console.log(list,"listlistlisr")
+                document.getElementById("jilu").innerText="共"+(list.length)+"条记录";
+                changepage(1,list);
+            },
+            error: function (xhr) {
+                alert('动态页有问题噶！\n\n' + xhr.responseText);
+            },
+            traditional: true,
+        }
+    )
+}else{
+    document.getElementById("jilu").innerText="共"+(list.length)+"条记录";
+    changepage(1,list);
+}
+}
+
+function setthisquestion(id){
+    console.log($("#"+id).text(),list)
+    var couponId = $("#"+id).text()
+    //alert(n);
+  
+    var storage = window.localStorage;
+    storage.setItem("thisCoupon",couponId);
+    console.log(storage.getItem("thisCoupon"),11111)
+    window.location.href="../web/coupon-edit.html"
+    /*
     var q=list[firstID+n];
     var storage = window.localStorage;
-    storage["thisUser"]=q.openid;
+    // storage["thisUser"]=q.openid;
+    storage["thisCoupon"]=q.id;*/
 }
 function deletequestion(n){
-    console.log(list,"ffddfdfdf")
+    console.log(list,"ffddfdfdf",n)
     var r=confirm("确定删除么？");
     if(r) {
         var q = list[firstID + n];
@@ -86,9 +107,10 @@ function changegroup(to){
     document.getElementById("page3").innerText=theGroup*5+3;
     document.getElementById("page4").innerText=theGroup*5+4;
     document.getElementById("page5").innerText=theGroup*5+5;
-    changepage(1);
+    changepage(1,list);
 }
-function changepage(page){
+function changepage(page,list){
+    console.log(list.length,'llll',list)
     $("#page1").show();
     $("#page2").show();
     $("#page3").show();
@@ -123,6 +145,7 @@ function changepage(page){
         document.getElementById("id"+(firstID%5+1)).innerText=list[firstID].id;
         document.getElementById("name"+(firstID%5+1)).innerText=list[firstID].name;
         
+        document.getElementById("image"+(firstID%5+1)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID].image;
         document.getElementById("image"+(firstID%5+1)).appendChild(img);
@@ -144,6 +167,7 @@ function changepage(page){
         $("#your-alert-2").show();
         document.getElementById("id"+(firstID%5+1)).innerText=list[firstID].id;
         document.getElementById("name"+(firstID%5+1)).innerText=list[firstID].name;
+        document.getElementById("image"+(firstID%5+1)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID].image;
         document.getElementById("image"+(firstID%5+1)).appendChild(img);
@@ -157,6 +181,7 @@ function changepage(page){
 
          document.getElementById("id"+(firstID%5+2)).innerText=list[firstID+1].id;
         document.getElementById("name"+(firstID%5+2)).innerText=list[firstID+1].name;
+        document.getElementById("image"+(firstID%5+2)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+1].image;
         document.getElementById("image"+(firstID%5+2)).appendChild(img);
@@ -177,12 +202,12 @@ function changepage(page){
         $("#your-alert-3").show();
         document.getElementById("id"+(firstID%5+1)).innerText=list[firstID].id;
         document.getElementById("name"+(firstID%5+1)).innerText=list[firstID].name;
+        document.getElementById("image"+(firstID%5+1)).innerText='';
       // '<img src="https://www.junrongcenter.com/'+list[firstID].image+'" alt="">'
       //  document.getElementById("image"+(firstID%5+1)).innerText=  '<img src="https://www.junrongcenter.com/'+list[firstID].image+'" alt="">';
       //img.src = "https://www.junrongcenter.com/record/groupon/66cb577649aa4000ab572097034031c0.jpg";
       var img = new Image();
-      img.src = "https://www.junrongcenter.com/"+list[firstID].image; 
-      console.log(img,"lalalalalalla")       
+      img.src = "https://www.junrongcenter.com/"+list[firstID].image;      
       document.getElementById("image"+(firstID%5+1)).appendChild(img);
      
       document.getElementById("description"+(firstID%5+1)).innerText=list[firstID].description;
@@ -196,6 +221,7 @@ function changepage(page){
 
         document.getElementById("id"+(firstID%5+2)).innerText=list[firstID+1].id;
         document.getElementById("name"+(firstID%5+2)).innerText=list[firstID+1].name;
+        document.getElementById("image"+(firstID%5+2)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+1].image;  
         console.log(img,"sdsdlalalalalalla")      
@@ -212,6 +238,7 @@ function changepage(page){
         document.getElementById("id"+(firstID%5+3)).innerText=list[firstID+2].id;
         document.getElementById("name"+(firstID%5+3)).innerText=list[firstID+2].name;
         var img = new Image();
+        document.getElementById("image"+(firstID%5+3)).innerText='';
         img.src = "https://www.junrongcenter.com/"+list[firstID+2].image;
         document.getElementById("image"+(firstID%5+3)).appendChild(img);
         document.getElementById("description"+(firstID%5+3)).innerText=list[firstID+2].description;
@@ -231,6 +258,7 @@ function changepage(page){
         $("#your-alert-4").show();
         document.getElementById("id"+(firstID%5+1)).innerText=list[firstID].id;
         document.getElementById("name"+(firstID%5+1)).innerText=list[firstID].name;
+        document.getElementById("image"+(firstID%5+1)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID].image;
         document.getElementById("image"+(firstID%5+1)).appendChild(img);
@@ -246,6 +274,7 @@ function changepage(page){
 
          document.getElementById("id"+(firstID%5+2)).innerText=list[firstID+1].id;
         document.getElementById("name"+(firstID%5+2)).innerText=list[firstID+1].name;
+        document.getElementById("image"+(firstID%5+2)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+1].image;
         document.getElementById("image"+(firstID%5+2)).appendChild(img);
@@ -259,6 +288,7 @@ function changepage(page){
 
         document.getElementById("id"+(firstID%5+3)).innerText=list[firstID+2].id;
         document.getElementById("name"+(firstID%5+3)).innerText=list[firstID+2].name;
+        document.getElementById("image"+(firstID%5+3)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+2].image;
         document.getElementById("image"+(firstID%5+3)).appendChild(img);
@@ -272,6 +302,7 @@ function changepage(page){
 
         document.getElementById("id"+(firstID%5+4)).innerText=list[firstID+3].id;
         document.getElementById("name"+(firstID%5+4)).innerText=list[firstID+3].name;
+        document.getElementById("image"+(firstID%5+4)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+3].image;
         document.getElementById("image"+(firstID%5+4)).appendChild(img);
@@ -293,6 +324,7 @@ function changepage(page){
         $("#your-alert-5").show();
         document.getElementById("id"+(firstID%5+1)).innerText=list[firstID].id;
         document.getElementById("name"+(firstID%5+1)).innerText=list[firstID].name;
+        document.getElementById("image"+(firstID%5+1)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID].image;
         document.getElementById("image"+(firstID%5+1)).appendChild(img);
@@ -306,6 +338,7 @@ function changepage(page){
 
          document.getElementById("id"+(firstID%5+2)).innerText=list[firstID+1].id;
         document.getElementById("name"+(firstID%5+2)).innerText=list[firstID+1].name;
+        document.getElementById("image"+(firstID%5+2)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+1].image;
         document.getElementById("image"+(firstID%5+2)).appendChild(img);
@@ -319,6 +352,7 @@ function changepage(page){
 
         document.getElementById("id"+(firstID%5+3)).innerText=list[firstID+2].id;
         document.getElementById("name"+(firstID%5+3)).innerText=list[firstID+2].name;
+        document.getElementById("image"+(firstID%5+3)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+2].image;
         document.getElementById("image"+(firstID%5+3)).appendChild(img);
@@ -332,6 +366,7 @@ function changepage(page){
 
         document.getElementById("id"+(firstID%5+4)).innerText=list[firstID+3].id;
         document.getElementById("name"+(firstID%5+4)).innerText=list[firstID+3].name;
+        document.getElementById("image"+(firstID%5+4)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+3].image;
         document.getElementById("image"+(firstID%5+4)).appendChild(img);
@@ -345,6 +380,7 @@ function changepage(page){
 
         document.getElementById("id"+(firstID%5+5)).innerText=list[firstID+4].id;
         document.getElementById("name"+(firstID%5+5)).innerText=list[firstID+4].name;
+        document.getElementById("image"+(firstID%5+5)).innerText='';
         var img = new Image();
         img.src = "https://www.junrongcenter.com/"+list[firstID+4].image;
         document.getElementById("image"+(firstID%5+5)).appendChild(img);
@@ -433,9 +469,26 @@ function search(){
 
 
 function searchByName(){
-    var text=$("#con2").val();
+    var text=$("#con").val();
+    alert(text)
+    var newList = new Array();
+    newList.length = 0;
+    list.filter(item=>{
+        console.log(item.name,222,item.name.indexOf(text))
+
+         if(item.name.indexOf(text)>=0){
+            newList.push(item)
+        }
+        
+        return item.name.indexOf(text)>0;
+    })
+   // list = newList
+   console.log(newList,'666')
+    this.getCouponList(newList);
+
+    /*
     for(var i=0;i<list.length;i++){
-        if(list[i].username==text){
+        if(list[i].name==text){
             $("#your-alert-1").show();
             document.getElementById("number"+(firstID%5+1)).innerText=list[i].openid;
             document.getElementById("name"+(firstID%5+1)).innerText=list[i].username;
@@ -446,7 +499,7 @@ function searchByName(){
             $("#your-alert-5").hide();
             firstID=i-1;
         }
-    }
+    }*/
 
 }
 

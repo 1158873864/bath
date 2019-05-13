@@ -52,8 +52,47 @@ list=new Array();
 //     }
 // )
 
+/*
+$("#fupPhoto").change(function () {
+   console.log($("#fupPhoto")[0].files,8744,$("#fupPhoto"),'77788',$("#fupPhoto")[0].files[0]);
+    var fd = new FormData($("#fupPhoto")[0]);
+    var url = getUrl();
+    $.ajax({
+        url: url + "/admin/uploadAdmin",
+        type: "POST",
+        data:{"image":fd},
+      //  enctype: 'multipart/form-data',
+        processData: false,
+        contentType:false,//"multipart/form-data", // , content="multipart/form-data;         charset=utf-8"
+        cache: false,
+        async: false,
+        success: function (data) {
+            //imageList=data;  
+              alert("上传图片成功！")
+          //  document.getElementById("imageList").innerText="";
+          //  $("#imageList").append("<img src='"+"../"+imageList+"' style=\"width: 10rem;height: 10rem;\">")
+        },
+        error: function (xhr) {
+            alert("上传图片失败！")
+            // Handle upload error
+            // ...
+        }
+    });
+ 
 
-
+})*/
+$("#upload").click(function(){
+    $.ajax({
+        url: url + "/admin/uploadAdmin",
+        type: 'POST',
+        cache: false,
+        enctype: 'multipart/form-data',
+        data: {"image":new FormData($('#fupPhoto')[0])},
+        processData: false,
+        contentType: false
+    }).done(function(res) {
+    }).fail(function(res) {})
+})
 
 function checkRate(input) {
     var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/
@@ -135,7 +174,7 @@ function adduser() {
 
 //添加优惠券接口
 function ocConfirm(){
-    console.log($('#takeEffectTime').val(),1111,)
+    console.log($('#fupPhoto').val(),555)
    $.ajax({
        url: url+'/groupon/add',
        type:'post',
@@ -150,14 +189,14 @@ function ocConfirm(){
         description:$('#description').val(),
         amount:$('#amount').val(),
         type:$('#type').val(),
-        image:$('fupPhoto').val,
+        image:$('#fupPhoto').val,
 
        },
        async: false,
        success: function (data) {
            alert("添加成功");
            console.log(data,'2222')
-           window.location.href = "coupon.html";
+           //window.location.href = "coupon.html";
        },
        error: function (xhr) {
            //alert('动态页有问题噶！\n\n' + xhr.responseText);
